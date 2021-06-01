@@ -31,12 +31,7 @@ namespace isFCAwf
 
         private void InformationCollectorForm_Load(object sender, EventArgs e)
         {
-            var dtSpecialisrData = DBConnectCreator.GetSpecialistData(sqlConnString, id);
-            var row = dtSpecialisrData.Rows[0];
-            this.Text = ((string)row["Должность"]) + " " + 
-                ((string)row["Фамилия"]).Replace(" ", "") + " " +
-                ((string)row["Имя"]).Replace(" ", "") + " " + 
-                ((string)row["Отчество"]).Replace(" ", "");
+            this.Text = DBConnectCreator.GetSpecialistData(sqlConnString, id);
             OrdersDataGridView.AutoGenerateColumns = true;
             dataGridViewFIO.AutoGenerateColumns = true;
             UpdateMainTable();

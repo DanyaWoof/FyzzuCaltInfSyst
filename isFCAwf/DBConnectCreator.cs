@@ -26,12 +26,18 @@ namespace isFCAwf
             return result;
         }
 
-        public static DataTable GetSpecialistData(string connectionString, int id)
+        public static string GetSpecialistData(string connectionString, int id)
         {
             var query = $"SELECT Должность,Фамилия,Имя,Отчество " +
                 $"FROM dbo.Сотрудники LEFT JOIN dbo.ДолжностиСправ ON Сотрудники.Код_должности = ДолжностиСправ.Код_должности  " +
                 $"WHERE ID_Сотрудника = '{id}';";
-            var result = Execute(connectionString, query);
+            var queryresult = Execute(connectionString, query);
+            var row = queryresult.Rows[0];
+            string result = 
+                ((string)row["Должность"]).Replace(" ", "") + ": " +
+                ((string)row["Фамилия"]).Replace(" ", "") + " " +
+                ((string)row["Имя"]).Replace(" ", "") + " " +
+                ((string)row["Отчество"]).Replace(" ", "");
             return result;
         }
 
@@ -45,8 +51,38 @@ namespace isFCAwf
                 $"LEFT JOIN dbo.Предприятия AS пр ON пр.ID_предприятия = з.ID_предприятия " +
                 $"LEFT JOIN dbo.ЗадачиСправ AS зс ON зс.Код_задачи = з.Код_задачи " +
                 $"LEFT JOIN dbo.Сотрудники AS сотр ON сотр.ID_Сотрудника = з.ID_CСИ " +
-                $"LEFT JOIN dbo.Сотрудники AS сотр2 ON сотр2.ID_Сотрудника = з.ID_ЭпМ";
+                $"LEFT JOIN dbo.Сотрудники AS сотр2 ON сотр2.ID_Сотрудника = з.ID_ЭпМ " +
+                $"order by Номер_заявки desc";
             var result = Execute(connectionString, query);
+            return result;
+        }
+
+        public static DataTable GetOrdersTableToMaster(string connectionString, int masterID, int checkState, DateTime minDatem, DateTime maxDate, bool isDateFilter)
+        {
+            var query = $"SELECT з.Номер_заявки AS '№', RTRIM(LTRIM(Статус_заявки)) AS Статус, Название_предприятия AS Предприятие, Задача, " +
+                $"сотр2.Фамилия + ' ' + сотр2.Имя AS Мастер, Дата_составления AS Принята, Код_документа_описания AS КДО " +
+                $"FROM dbo.Заявки AS з " +
+                $"LEFT JOIN dbo.Статусы AS ст ON ст.Код_статуса_заявки = з.Код_статуса_заявки " +
+                $"LEFT JOIN dbo.Предприятия AS пр ON пр.ID_предприятия = з.ID_предприятия " +
+                $"LEFT JOIN dbo.ЗадачиСправ AS зс ON зс.Код_задачи = з.Код_задачи " +
+                $"LEFT JOIN dbo.Сотрудники AS сотр2 ON сотр2.ID_Сотрудника = з.ID_ЭпМ ";
+            var filters = new List<string>(2);
+            if (checkState == 1)
+                filters.Add("ID_ЭпМ is null");
+            else if (checkState == 2)
+                filters.Add($" ID_ЭпМ = {masterID} AND ст.Код_статуса_заявки = 1"); //TO DO: Заменить 1 на код статуса закрытой заявки
+            else if (checkState == 3)
+                filters.Add($" ID_ЭпМ = {masterID} AND ст.Код_статуса_заявки = 2"); //TO DO: Заменить 1 на код статуса закрытой заявки
+            if (isDateFilter)
+            {
+                filters.Add($"з.Дата_составления BETWEEN '{minDatem:yyyy-MM-dd}' AND '{maxDate:yyyy-MM-dd}'");
+                //{ info.Дата_выдачи?.ToString("\\'yyyy-MM-dd\\'") ?? "NULL"}); ";                filters.Add($"з.Дата_составления BETWEEN '{fromDate:yyyy-MM-dd}' AND '{toDate:yyyy-MM-dd}'");
+            }
+            string filter = "";
+            if (filters.Count != 0)
+                filter = " WHERE " + string.Join(" AND ", filters);
+            filter += " Order by Номер_заявки desc";
+            var result = Execute(connectionString, query + filter);
             return result;
         }
 
@@ -136,6 +172,46 @@ namespace isFCAwf
             return Execute(connectionString, query);
         }
 
+        public static DataTable GetCompanyDataToMaster(string connectionString, int orderNom)
+        {
+            var query = $"SELECT з.ID_предприятия, Название_предприятия, Адрес_предприятия, Тип_предприятия FROM dbo.Заявки AS з " +
+                $"LEFT JOIN dbo.Предприятия AS пр ON пр.ID_предприятия = з.ID_предприятия " +
+                $"LEFT JOIN dbo.ТипыПредприятий AS кт ON кт.Код_типа_предприятия = пр.Код_типа_предпрития " +
+                $"where Номер_заявки = {orderNom}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+
+        public static DataTable GetFuzzySet_U(string connectionString, int orderNom)
+        {
+            var query = $"SELECT Код_М_U, Описание FROM dbo.Заявки AS з " +
+                $"LEFT JOIN dbo.Хранилище_множеств_U AS хмU ON хмU.Номер_заявки = з.Номер_заявки " +
+                $"where з.Номер_заявки = {orderNom}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+
+        public static DataTable GetFuzzySetsOfSet_A (string connectionString, int kodOfM_U)
+        {
+            var query = $"SELECT nmu.Код_М_U, Код_НМ, RTRIM(LTRIM(Имя_НМ)), m1, m2, a, b  FROM dbo.Хранилище_множеств_U AS nmU " +
+                $"LEFT JOIN dbo.[Нечеткие_множества_A<u>] AS nmA ON nmA.Код_М_U = nmU.Код_М_U " +
+                $"where nmu.Код_М_U = {kodOfM_U}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+
+        public static DataTable GetFuzzySetsOfLingVar_X(string connectionString, int kodOfM_U)
+        {
+            var query = $"SELECT nmu.Код_М_U, лп.Код_НМ_ЛП, лп.Имя, лп.m1, лп.m2, лп.a, лп.b " +
+                $"FROM dbo.Хранилище_множеств_U AS nmU " +
+                $"LEFT JOIN dbo.Лингвистические_переменные_Х AS лпX ON лпX.Код_М_U = nmu.Код_М_U " +
+                $"LEFT JOIN dbo.ЛП_Нечеткие_множества AS лп ON  лп.Код_ЛП = лпX.Код_ЛП " +
+                $"where nmu.Код_М_U = {kodOfM_U}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+
+
 
         public static DataRow CommAdder(string connectionString, Order order)
         {
@@ -166,14 +242,14 @@ namespace isFCAwf
             {
                 dr = CommAdder(connectionString, order);
                 companyNewID = (int)dr["ID_предприятия"];
-            }            //По ID нового или старого предприятия добавляется новая заявка в БД
+            }                                                                                        //По ID нового или старого предприятия добавляется новая заявка в БД
             query = $"INSERT INTO dbo.Заявки(ID_предприятия, Код_документа_описания, Код_задачи, ID_CСИ, ID_ЭпМ, Дата_составления, Дата_завершения, Код_статуса_заявки) " +
                 $"OUTPUT Inserted.Номер_заявки " +
                 $"VALUES({companyNewID}, {order.IDdocOfDescriptionOfTheSubjectArea}, {order.OrderTask}, {order.IdIC}, null, GETDATE(), null, {order.orderStatus}); ";
             dr = Execute(connectionString, query).Rows[0];
             int orderNum = (int)dr["Номер_заявки"];
-                        // теперь, когда заявка уже добавлена в БД с ней можно связать клиентов по промежуточной (многое-ко-многим) таблице
-            query = $"SELECT * FROM dbo.СписКлиентов where Номер_заявки = {orderNum}";
+                        
+            query = $"SELECT * FROM dbo.СписКлиентов where Номер_заявки = {orderNum}";// теперь, когда заявка уже добавлена в БД с ней можно связать клиентов по промежуточной (многое-ко-многим) таблице
             var existDBRelations = Execute(connectionString, query).Rows;
             query = $"SELECT ID_клиента FROM dbo.Клиенты";
             for (int i = 0; i < clientsIDlist.Count; i++)
@@ -260,4 +336,4 @@ namespace isFCAwf
 
 
     }
-}
+}                                                                                                                   ////{info.Дата_выдачи?.ToString("\\'yyyy-MM-dd\\'") ?? "NULL"});";

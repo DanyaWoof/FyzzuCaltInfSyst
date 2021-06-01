@@ -36,5 +36,7 @@ namespace isFCAwf
 
     }
 
+    public class MasterOrder : Order
+    { }
 
 }
