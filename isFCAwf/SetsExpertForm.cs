@@ -46,6 +46,8 @@ namespace isFCAwf
 
             this.Text = DBConnectCreator.GetSpecialistData(sqlConnString, id);
             dgvOrders_Update();
+            groupBox1.Enabled = false;
+            groupBox3.Enabled = false;
         }
 
 
@@ -78,18 +80,22 @@ namespace isFCAwf
                 case 1:
                     UnFreeOrderBtn.Enabled = true;
                     UnFreeOrderBtn.Text = "Принять";
+                    CloseOrderBtn.Enabled = false;
                     break;
                 case 2:
                     UnFreeOrderBtn.Enabled = true;
                     UnFreeOrderBtn.Text = "Выбрать";
+                    CloseOrderBtn.Enabled = true;
                     break;
                 case 3:
                     UnFreeOrderBtn.Enabled = true;
                     UnFreeOrderBtn.Text = "Смотреть";
+                    CloseOrderBtn.Enabled = false;
                     break;
                 default:
                     UnFreeOrderBtn.Enabled = false;
                     UnFreeOrderBtn.Text = "";
+                    CloseOrderBtn.Enabled = false;
                     break;
             }
             dgv1stat = dgvChecked_nom;
@@ -250,7 +256,13 @@ namespace isFCAwf
         {
             if (dgv1stat == 1)
             {
-
+                DBConnectCreator.OrderOwnerToDungeonMaster(sqlConnString, id, savedSelectedOrderNum); //savedSelectedOrderNum;
+                dgvOrders_Update();
+            }
+            if (dgv1stat == 2)
+            {
+                gbFreeOrders.Enabled = false;
+                groupBox1.Enabled = true;
             }
 
         }
@@ -263,6 +275,17 @@ namespace isFCAwf
         private void radioButton10_CheckedChanged(object sender, EventArgs e)
         {
             Update_dgvSetsData(ID_U);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            gbFreeOrders.Enabled = true;
+            groupBox1.Enabled = false;
+        }
+
+        private void CloseOrderBtn_Click(object sender, EventArgs e)
+        {
+          //  DBConnectCreator.OrderClose(sqlConnString, id, savedSelectedOrderNum); //savedSelectedOrderNum;
         }
     }
 }

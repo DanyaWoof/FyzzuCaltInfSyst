@@ -316,7 +316,16 @@ namespace isFCAwf
             _ = Execute(connectionString, query);
         }
 
-
+        public static void OrderOwnerToDungeonMaster(string connectionString, int idFuzExp, int orderNum)
+        {
+            var query = $"UPDATE dbo.Заявки SET ID_ЭпМ = {idFuzExp} WHERE Номер_заявки = {orderNum}";
+            _ = Execute(connectionString, query);
+        }
+        public static void OrderClose(string connectionString, int orderNum)
+        {
+            var query = $"UPDATE dbo.Заявки SET Код_статуса_заявки = 2 WHERE Номер_заявки = {orderNum}";
+            _ = Execute(connectionString, query);
+        }
 
         /*public static DataTable GetOrdersTable(string connectionString)
         {

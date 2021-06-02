@@ -51,7 +51,6 @@
             this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.dgvSelectedOrderData = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -64,6 +63,13 @@
             this.button9 = new System.Windows.Forms.Button();
             this.bsSelectedOrderData = new System.Windows.Forms.BindingSource(this.components);
             this.bsSetsData = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.CloseOrderBtn = new System.Windows.Forms.Button();
             this.gbFreeOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsOrders)).BeginInit();
@@ -78,7 +84,7 @@
             // 
             // BackToTheAuthorizeBTN
             // 
-            this.BackToTheAuthorizeBTN.Location = new System.Drawing.Point(792, 16);
+            this.BackToTheAuthorizeBTN.Location = new System.Drawing.Point(792, 17);
             this.BackToTheAuthorizeBTN.Name = "BackToTheAuthorizeBTN";
             this.BackToTheAuthorizeBTN.Size = new System.Drawing.Size(75, 23);
             this.BackToTheAuthorizeBTN.TabIndex = 0;
@@ -97,13 +103,14 @@
             this.gbFreeOrders.Controls.Add(this.UnFreeOrderBtn);
             this.gbFreeOrders.Controls.Add(this.dateTimePicker1);
             this.gbFreeOrders.Controls.Add(this.dgwFrOrUpdaterBtn);
+            this.gbFreeOrders.Controls.Add(this.CloseOrderBtn);
             this.gbFreeOrders.Controls.Add(this.BackToTheAuthorizeBTN);
             this.gbFreeOrders.Controls.Add(this.radioButton4);
             this.gbFreeOrders.Controls.Add(this.radioButton1);
             this.gbFreeOrders.Controls.Add(this.radioButton2);
             this.gbFreeOrders.Location = new System.Drawing.Point(1, 2);
             this.gbFreeOrders.Name = "gbFreeOrders";
-            this.gbFreeOrders.Size = new System.Drawing.Size(883, 218);
+            this.gbFreeOrders.Size = new System.Drawing.Size(883, 227);
             this.gbFreeOrders.TabIndex = 1;
             this.gbFreeOrders.TabStop = false;
             this.gbFreeOrders.Text = "Заявки";
@@ -111,7 +118,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(653, 22);
+            this.checkBox1.Location = new System.Drawing.Point(528, 21);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(133, 17);
             this.checkBox1.TabIndex = 3;
@@ -122,7 +129,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(495, 22);
+            this.label2.Location = new System.Drawing.Point(359, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(22, 13);
             this.label2.TabIndex = 2;
@@ -133,7 +140,7 @@
             this.dgvOrders.AutoGenerateColumns = false;
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrders.DataSource = this.bsOrders;
-            this.dgvOrders.Location = new System.Drawing.Point(0, 51);
+            this.dgvOrders.Location = new System.Drawing.Point(0, 62);
             this.dgvOrders.Name = "dgvOrders";
             this.dgvOrders.Size = new System.Drawing.Size(776, 150);
             this.dgvOrders.TabIndex = 0;
@@ -142,7 +149,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(349, 22);
+            this.label1.Location = new System.Drawing.Point(365, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(16, 13);
             this.label1.TabIndex = 2;
@@ -151,7 +158,7 @@
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(303, 19);
+            this.radioButton5.Location = new System.Drawing.Point(309, 20);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(44, 17);
             this.radioButton5.TabIndex = 1;
@@ -161,7 +168,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(523, 20);
+            this.dateTimePicker2.Location = new System.Drawing.Point(387, 36);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(121, 20);
             this.dateTimePicker2.TabIndex = 1;
@@ -178,14 +185,14 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(371, 19);
+            this.dateTimePicker1.Location = new System.Drawing.Point(387, 10);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(121, 20);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // dgwFrOrUpdaterBtn
             // 
-            this.dgwFrOrUpdaterBtn.Location = new System.Drawing.Point(792, 74);
+            this.dgwFrOrUpdaterBtn.Location = new System.Drawing.Point(667, 17);
             this.dgwFrOrUpdaterBtn.Name = "dgwFrOrUpdaterBtn";
             this.dgwFrOrUpdaterBtn.Size = new System.Drawing.Size(75, 23);
             this.dgwFrOrUpdaterBtn.TabIndex = 0;
@@ -196,7 +203,7 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(197, 19);
+            this.radioButton4.Location = new System.Drawing.Point(203, 20);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(100, 17);
             this.radioButton4.TabIndex = 1;
@@ -207,7 +214,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(11, 19);
+            this.radioButton1.Location = new System.Drawing.Point(17, 20);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(82, 17);
             this.radioButton1.TabIndex = 1;
@@ -219,7 +226,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(99, 19);
+            this.radioButton2.Location = new System.Drawing.Point(105, 20);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(92, 17);
             this.radioButton2.TabIndex = 1;
@@ -233,10 +240,12 @@
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.dgvSelectedOrderData);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button12);
+            this.groupBox1.Controls.Add(this.button11);
             this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Location = new System.Drawing.Point(1, 209);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Location = new System.Drawing.Point(1, 216);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(883, 231);
             this.groupBox1.TabIndex = 1;
@@ -250,7 +259,7 @@
             this.groupBox2.Controls.Add(this.radioButton7);
             this.groupBox2.Location = new System.Drawing.Point(11, 19);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(458, 36);
+            this.groupBox2.Size = new System.Drawing.Size(412, 36);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Показать данные:";
@@ -301,34 +310,26 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(792, 144);
+            this.button1.Location = new System.Drawing.Point(782, 176);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 48);
+            this.button1.Size = new System.Drawing.Size(95, 48);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Работать с множеством";
+            this.button1.Text = "Работать со множеством";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(792, 77);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 35);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Данные по заявке";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(792, 48);
+            this.button2.Location = new System.Drawing.Point(792, 19);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 0;
             this.button2.Text = "Сбросить";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(792, 19);
+            this.button3.Location = new System.Drawing.Point(667, 19);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 0;
@@ -341,6 +342,8 @@
             this.groupBox3.Controls.Add(this.radioButton10);
             this.groupBox3.Controls.Add(this.dgvSetsData);
             this.groupBox3.Controls.Add(this.button6);
+            this.groupBox3.Controls.Add(this.button10);
+            this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.button7);
             this.groupBox3.Controls.Add(this.button8);
             this.groupBox3.Controls.Add(this.button9);
@@ -386,49 +389,110 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(792, 131);
+            this.button6.Location = new System.Drawing.Point(792, 177);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 38);
             this.button6.TabIndex = 0;
             this.button6.Text = "Работать";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.BackToTheAuthorizeBTN_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(792, 77);
+            this.button7.Location = new System.Drawing.Point(792, 69);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 0;
-            this.button7.Text = "Данные по заявке";
+            this.button7.Text = "Добавить";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.BackToTheAuthorizeBTN_Click);
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(792, 48);
+            this.button8.Location = new System.Drawing.Point(792, 13);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 0;
             this.button8.Text = "Сбросить";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.BackToTheAuthorizeBTN_Click);
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(792, 19);
+            this.button9.Location = new System.Drawing.Point(667, 13);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 0;
             this.button9.Text = "Обновить";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.BackToTheAuthorizeBTN_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Location = new System.Drawing.Point(890, 2);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(222, 163);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Добавить множество";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(792, 98);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "Изменить";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(792, 127);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "Удалить";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(792, 75);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "Добавить";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(792, 104);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 0;
+            this.button11.Text = "Изменить";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(792, 133);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 0;
+            this.button12.Text = "Удалить";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // CloseOrderBtn
+            // 
+            this.CloseOrderBtn.Location = new System.Drawing.Point(792, 62);
+            this.CloseOrderBtn.Name = "CloseOrderBtn";
+            this.CloseOrderBtn.Size = new System.Drawing.Size(75, 34);
+            this.CloseOrderBtn.TabIndex = 0;
+            this.CloseOrderBtn.Text = "Закрыть заявку";
+            this.CloseOrderBtn.UseVisualStyleBackColor = true;
+            this.CloseOrderBtn.Click += new System.EventHandler(this.CloseOrderBtn_Click);
             // 
             // SetsExpertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1355, 699);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbFreeOrders);
@@ -477,7 +541,6 @@
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.RadioButton radioButton8;
         private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton radioButton9;
         private System.Windows.Forms.RadioButton radioButton10;
@@ -490,5 +553,12 @@
         private System.Windows.Forms.BindingSource bsSelectedOrderData;
         private System.Windows.Forms.BindingSource bsSetsData;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button CloseOrderBtn;
     }
 }
