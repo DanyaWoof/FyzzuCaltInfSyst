@@ -35,6 +35,12 @@ namespace isFCAwf
 
 
     }
+    public class SetsParams
+    {
+        public int dResult_X { get; set; } //0 1 2
+        public bool dRresults_onA { get; set; }
+
+    }
 
     public class MasterOrder : Order
     { }

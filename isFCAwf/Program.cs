@@ -16,7 +16,8 @@ namespace isFCAwf
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AuthorizationForm());
+            //Application.Run(new AuthorizationForm());
+            Application.Run(new CountForm($"Data Source = DESKTOP - EI0AJ7L; Initial Catalog = FuzzyCalc; Integrated Security = True", 2));
         }
     }
 }

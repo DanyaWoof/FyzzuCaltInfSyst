@@ -326,6 +326,54 @@ namespace isFCAwf
             var query = $"UPDATE dbo.Заявки SET Код_статуса_заявки = 2 WHERE Номер_заявки = {orderNum}";
             _ = Execute(connectionString, query);
         }
+        public static void DeleteNM_A_or_LP(string connectionString, int orderNum, bool All_U_or_LP)
+        {
+            /////////////////////////////////////////////////////
+
+
+
+            var query = $"UPDATE dbo.Заявки SET Код_статуса_заявки = 2 WHERE Номер_заявки = {orderNum}";
+            _ = Execute(connectionString, query);
+        }
+        public static void DeleteSetsU_U(string connectionString, int orderNum, int ID_mU, SetsParams setsParams)
+        {
+            var query = $"SELECT Код_ЛП FROM dbo.Хранилище_множеств_U AS хму " +
+                $"LEFT JOIN dbo.Лингвистические_переменные_Х AS лпх ON хму.Код_М_U = лпх.Код_М_U " +
+                $"WHERE хму.Код_М_U = {ID_mU}";
+            var drSelectRes = Execute(connectionString, query).Rows;
+            for (int i = 0; drSelectRes.Count != 0 && i < drSelectRes.Count; i++)
+            {
+                int LP_ID = (int)drSelectRes[i]["Код_ЛП"];
+                query = "";
+                switch (setsParams.dResult_X)
+                {
+                    case 2:
+                        //query = $"";
+                        query = $"DELETE FROM dbo.ЛП_Нечеткие_множества WHERE Код_ЛП = {LP_ID} ; ";                        // _ = Execute(connectionString, query);
+                        query += $"DELETE FROM dbo.Лингвистические_переменные_Х WHERE Код_ЛП = {LP_ID} ;";
+                        break;
+                    case 1:
+                        query = $"UPDATE dbo.ЛП_Нечеткие_множества SET Код_ЛП = null WHERE Код_ЛП = {LP_ID} ; ";
+                        query += $"DELETE FROM dbo.Лингвистические_переменные_Х WHERE Код_ЛП = {LP_ID}";
+                        break;
+                    case 0:
+                        query = $"UPDATE dbo.ЛП_Нечеткие_множества SET Код_ЛП = null WHERE Код_ЛП = {LP_ID} ; ";
+                        query += $"UPDATE dbo.Лингвистические_переменные_Х SET Код_М_U = null WHERE Код_М_U = {ID_mU}";
+                        break;
+                    default:
+                        break;
+                }
+                _ = Execute(connectionString, query);
+            }
+
+            if (setsParams.dRresults_onA)
+                query = $"DELETE FROM dbo.[Нечеткие_множества_A<u>] WHERE Код_М_U = {ID_mU} ;";
+            else
+                query = $"UPDATE dbo.[Нечеткие_множества_A<u>] SET Код_М_U = null WHERE Код_М_U = {ID_mU};";
+            _ = Execute(connectionString, query);
+            query = $"DELETE FROM dbo.Хранилище_множеств_U WHERE Код_М_U = {ID_mU} AND Номер_заявки = {orderNum};";
+            _ = Execute(connectionString, query);
+        }
 
         /*public static DataTable GetOrdersTable(string connectionString)
         {

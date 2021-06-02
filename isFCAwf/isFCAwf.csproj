@@ -58,6 +58,12 @@
     <Compile Include="AuthorizationForm.Designer.cs">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CountForm.Designer.cs">
+      <DependentUpon>CountForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBConnectCreator.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -65,6 +71,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FuzzyCounter.cs" />
     <Compile Include="InformationCollectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuthorizationForm.resx">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CountForm.resx">
+      <DependentUpon>CountForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformationCollectorForm.resx">
       <DependentUpon>InformationCollectorForm.cs</DependentUpon>

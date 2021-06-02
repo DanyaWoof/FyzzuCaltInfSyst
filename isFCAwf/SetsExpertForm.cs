@@ -27,7 +27,7 @@ namespace isFCAwf
         private void SetsExpertForm_Load(object sender, EventArgs e)
         {
             //groupBox1.Enabled = false;
-
+            groupBox4.Visible = false;
 
             //dgvOrders.DataSource = bsOrders;
             dgvSelectedOrderData.DataSource = bsSelectedOrderData;
@@ -263,6 +263,7 @@ namespace isFCAwf
             {
                 gbFreeOrders.Enabled = false;
                 groupBox1.Enabled = true;
+                dgvSetsData.Enabled = true;
             }
 
         }
@@ -281,11 +282,106 @@ namespace isFCAwf
         {
             gbFreeOrders.Enabled = true;
             groupBox1.Enabled = false;
+            dgvSetsData.Enabled = false;
         }
 
         private void CloseOrderBtn_Click(object sender, EventArgs e)
         {
           //  DBConnectCreator.OrderClose(sqlConnString, id, savedSelectedOrderNum); //savedSelectedOrderNum;
+        }
+
+        public int selectedLP_or_A = new int();
+        private void dgvSetsData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && radioButton8.Checked && Int32.TryParse((dgvSetsData[0, e.RowIndex].Value.ToString()), out int selectedLP_or_A))
+            {
+                this.selectedLP_or_A = selectedLP_or_A;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            groupBox4.Visible = true;//ID_U
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //selectedLP_or_A
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            SetsDeleter(false);
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            SetsDeleter(true);
+        }
+        public void SetsDeleter(bool deleteAll)
+        {
+
+            //selectedLP_or_A
+        }
+
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            SetsParams setsParams = new SetsParams();
+            DialogResult dResult = MessageBox.Show("Вы уверены что ходите удалить выбранное множество U?", "!Подтвердите действие!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) ;
+            if (dResult == DialogResult.No)
+                return;
+            else
+            {
+                dResult = MessageBox.Show("Удалить набор ЛП и все множества?  _NO_ удалит набор X и связи. _Canles_ Удалить связь хранилища U c набором ЛП X", "Удаление ЛП", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (dResult == DialogResult.Yes)
+                    setsParams.dResult_X = 2;
+                else if (dResult == DialogResult.No)
+                    setsParams.dResult_X = 1;
+                else
+                    setsParams.dResult_X = 0;
+
+                dResult = MessageBox.Show("Удалить множества? _NO_ удалит только связь с множеством", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dResult == DialogResult.No)
+                    setsParams.dRresults_onA = false;
+                else
+                    setsParams.dRresults_onA = true;
+            }
+            DBConnectCreator.DeleteSetsU_U(sqlConnString, savedSelectedOrderNum, ID_U, setsParams);
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            groupBox4.Visible = true;
+            radioButton3.Enabled = false;
+            radioButton12.Enabled = false;
+            groupBox5.Enabled = false;
+            groupBox7.Enabled = false;
+            textBox2.Enabled = false;
+            textBox7.Enabled = false;
+            comboBox1.Enabled = false;
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            groupBox4.Visible = false;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //
         }
     }
 }
