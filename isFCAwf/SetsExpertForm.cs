@@ -27,7 +27,7 @@ namespace isFCAwf
         private void SetsExpertForm_Load(object sender, EventArgs e)
         {
             //groupBox1.Enabled = false;
-            groupBox4.Visible = false;
+            gbNMU_X.Visible = false;
 
             //dgvOrders.DataSource = bsOrders;
             dgvSelectedOrderData.DataSource = bsSelectedOrderData;
@@ -160,7 +160,7 @@ namespace isFCAwf
                 savedSelectedOrderNum = selectedOrderNum;
             }
         }
-        int savedSelectedOrderNum = new int();
+        int savedSelectedOrderNum = -1;
         int gb2Status = -1;
         public void dgvSelectedOrderData_Update(int selectedOrderNum)
         {
@@ -226,7 +226,7 @@ namespace isFCAwf
             dgvSelectedOrderData_Update(savedSelectedOrderNum);
         }
 
-        int ID_U = new int();
+        int ID_U = -1;
         private void dgvSelectedOrderData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && radioButton8.Checked && Int32.TryParse((dgvSelectedOrderData[0, e.RowIndex].Value.ToString()), out int kodM_U))
@@ -263,6 +263,7 @@ namespace isFCAwf
             {
                 gbFreeOrders.Enabled = false;
                 groupBox1.Enabled = true;
+                groupBox3.Enabled = true;
                 dgvSetsData.Enabled = true;
             }
 
@@ -280,9 +281,14 @@ namespace isFCAwf
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Cansel();
+        }
+        public void Cansel()
+        {
             gbFreeOrders.Enabled = true;
             groupBox1.Enabled = false;
             dgvSetsData.Enabled = false;
+            groupBox3.Enabled = false;
         }
 
         private void CloseOrderBtn_Click(object sender, EventArgs e)
@@ -301,14 +307,16 @@ namespace isFCAwf
 
         private void button4_Click(object sender, EventArgs e)
         {
-            groupBox4.Visible = true;//ID_U
-
+            U_btnStatChange = true;
+            gbNMU_XCheckChanged();
         }
-
+        public bool isSelectToAddorUpdate_nmA;
         private void button7_Click(object sender, EventArgs e)
         {
+            //isSelectToAddorUpdate_nmA
             //selectedLP_or_A
         }
+
 
         private void button10_Click(object sender, EventArgs e)
         {
@@ -328,6 +336,8 @@ namespace isFCAwf
 
         private void button12_Click(object sender, EventArgs e)
         {
+            if (WasNotSelected_OrderOrFuzSet())
+                return;
             SetsParams setsParams = new SetsParams();
             DialogResult dResult = MessageBox.Show("Вы уверены что ходите удалить выбранное множество U?", "!Подтвердите действие!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) ;
             if (dResult == DialogResult.No)
@@ -349,6 +359,7 @@ namespace isFCAwf
                     setsParams.dRresults_onA = true;
             }
             DBConnectCreator.DeleteSetsU_U(sqlConnString, savedSelectedOrderNum, ID_U, setsParams);
+            dgvSelectedOrderData_Update(savedSelectedOrderNum);
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -361,27 +372,184 @@ namespace isFCAwf
 
         }
 
+        private bool U_btnStatChange = false;
         private void button11_Click(object sender, EventArgs e)
         {
-            groupBox4.Visible = true;
-            radioButton3.Enabled = false;
-            radioButton12.Enabled = false;
-            groupBox5.Enabled = false;
-            groupBox7.Enabled = false;
-            textBox2.Enabled = false;
-            textBox7.Enabled = false;
-            comboBox1.Enabled = false;
-
+            U_btnStatChange = false;
+            gbNMU_XCheckChanged();
         }
+
 
         private void button8_Click(object sender, EventArgs e)
         {
-            groupBox4.Visible = false;
+            gbNMU_X.Visible = false;
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //
+            gbNMU_XCheckChanged();
+            bool idWasParsed = int.TryParse(ID_mU.Text, out int freeIDnmU);
+            if (rbFree.Checked && rbFromFree.Checked)
+            {
+                MessageBox.Show("Нет смысла переносить свободное мноество/набор из свободного в свободное :|","Логическая ошибка");
+                return;
+            }
+            if (rbFromFree.Checked && !idWasParsed)
+            {
+                MessageBox.Show("Неправильно введен ID", "ID?");
+                return;
+            }
+            if (rbmX.Checked)
+                DBConnectCreator.InsertOrUpdate_nmX(sqlConnString, savedSelectedOrderNum, ID_U, tbDesc.Text, U_btnStatChange, addLikeFree, fromFree_oldnmU, freeIDnmU);
+            else
+                DBConnectCreator.InsertOrUpdate_nmU(sqlConnString, savedSelectedOrderNum, ID_U, tbDesc.Text, U_btnStatChange, addLikeFree, fromFree_oldnmU, freeIDnmU);
+            dgvSelectedOrderData_Update(savedSelectedOrderNum);
+            gbNMU_X.Visible = false;
+            tbDesc.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CountForm countForm = new CountForm(sqlConnString, savedSelectedOrderNum);
+            countForm.Show();
+        }
+
+        private void radioButton14_CheckedChanged(object sender, EventArgs e)
+        {
+            gbNMU_XCheckChanged();
+        }
+
+        public bool addLikeFree;
+        public bool fromFree_oldnmU;
+        public bool isSelect_U_notX;
+
+        private bool WasNotSelected_OrderOrFuzSet()
+        {
+            if (savedSelectedOrderNum == -1)
+            {
+                MessageBox.Show("Не выбрана заявка");
+                Cansel();
+                return true;
+            }
+
+            if (ID_U == -1 && !U_btnStatChange)
+            {
+                MessageBox.Show("Не выбрано множество для изменения");
+                gbNMU_X.Visible = false;
+                return true;
+            }
+            return false;
+        }
+        private void gbNMU_XCheckChanged()
+        {
+            if (WasNotSelected_OrderOrFuzSet())
+                return;
+            gbNMU_X.Visible = true;
+            if (U_btnStatChange) // если добавить
+            {
+                gbNMU_X.Text = "Добавить";
+                rbFree.Enabled = true;
+                rbToOrder.Enabled = true;
+                rbNew.Enabled = true;
+                rbFromFree.Enabled = true;
+                if (rbmU.Checked)
+                {
+                    rbFree.Text = "свободное множество";
+                    rbToOrder.Text = "к заявке";
+                    rbNew.Text = "новое";
+                    lbID.Text = "ID_mU";
+                    isSelect_U_notX = true;
+                    gbNMU_X.Text += " множество U";
+                }
+                else//rbmX
+                {
+                    rbFree.Text = "свободный набор";
+                    rbToOrder.Text = "к множеству";
+                    rbNew.Text = "новый";
+                    lbID.Text = "ID_mX";
+                    isSelect_U_notX = false;
+                    gbNMU_X.Text += " набор ЛП X";
+                }
+                if (rbFree.Checked)
+                    addLikeFree = true;
+                else
+                    addLikeFree = false;
+                if (rbFromFree.Checked)
+                {
+                    fromFree_oldnmU = true;
+                    ID_mU.Enabled = true;
+                    tbDesc.Enabled = false;
+                }
+
+                else
+                {
+                    fromFree_oldnmU = false;
+                    ID_mU.Enabled = false;
+                    tbDesc.Enabled = true;
+                }
+
+            }
+            else //если изменить
+            {
+                gbNMU_X.Text = "Изменить";
+                rbFree.Enabled = false;
+                rbToOrder.Enabled = false;
+                rbNew.Enabled = false;
+                rbFromFree.Enabled = false;
+                if (rbmU.Checked)
+                {
+                    isSelect_U_notX = true;
+                    gbNMU_X.Text += " множество U";
+                }
+                else//rbmX
+                {
+                    isSelect_U_notX = false;
+                    gbNMU_X.Text += " набор ЛП X";
+                }
+
+            }
+
+        }
+
+        private void radioButton11_CheckedChanged(object sender, EventArgs e)
+        {
+            gbNMU_XCheckChanged();
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            gbNMU_XCheckChanged();
+        }
+
+        private void radioButton12_CheckedChanged(object sender, EventArgs e)
+        {
+            gbNMU_XCheckChanged(); ;
+        }
+
+        private void radioButton13_CheckedChanged(object sender, EventArgs e)
+        {
+            gbNMU_XCheckChanged();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dgvSelectedOrderData_Update(savedSelectedOrderNum);
+        }
+
+        private void radioButton15_CheckedChanged(object sender, EventArgs e)
+        {
+            gbNMU_XCheckChanged();
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            FreeSets freeSets = new FreeSets(sqlConnString);
+            freeSets.Show();
+        }
+
+        private void radioButton16_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox5.Enabled = true;
         }
     }
 }

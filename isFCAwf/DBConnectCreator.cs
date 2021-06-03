@@ -210,6 +210,39 @@ namespace isFCAwf
             var result = Execute(connectionString, query);
             return result;
         }
+        public static DataTable GetFreeFuzzySets_U(string connectionString)
+        {
+            var query = $"SELECT * FROM [FuzzyCalc].dbo.Хранилище_множеств_U WHERE Номер_заявки is null";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+        public static DataTable GetFreeFuzzySets_ofSet_X(string connectionString, int nmUID, bool showAll)
+        {
+            var query = $"SELECT * FROM [FuzzyCalc].dbo.Лингвистические_переменные_Х WHERE ";
+            if (showAll)
+                query += $" Код_М_U is null AND ";
+            query += $" Код_М_U = {nmUID}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+        public static DataTable GetFreeFuzzySets_A(string connectionString, int nmUID, bool showAll)
+        {
+            var query = $"SELECT * FROM [FuzzyCalc].dbo.[Нечеткие_множества_A<u>] WHERE ";
+            if (showAll)
+                query += $" Код_М_U is null AND ";
+            query += $" Код_М_U = {nmUID}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+        public static DataTable GetFreeFuzzySets_LPX(string connectionString, int nmXID, bool showAll)
+        {
+            var query = $"SELECT * FROM [FuzzyCalc].dbo.ЛП_Нечеткие_множества WHERE ";
+            if (showAll)
+                query += $" Код_ЛП is null AND ";
+            query += $" Код_ЛП = {nmXID}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
 
 
 
@@ -326,15 +359,68 @@ namespace isFCAwf
             var query = $"UPDATE dbo.Заявки SET Код_статуса_заявки = 2 WHERE Номер_заявки = {orderNum}";
             _ = Execute(connectionString, query);
         }
-        public static void DeleteNM_A_or_LP(string connectionString, int orderNum, bool All_U_or_LP)
+        public static void InsertOrUpdate_nmU(string connectionString, int orderNum, int nmU, string description_nmU, bool U_btnStatChange, bool addLikeFree, bool fromFree_nmUs, int freeIdnmU)
         {
-            /////////////////////////////////////////////////////
-
-
-
-            var query = $"UPDATE dbo.Заявки SET Код_статуса_заявки = 2 WHERE Номер_заявки = {orderNum}";
+            string query;
+            if (!U_btnStatChange) //изменить
+                query = $"UPDATE dbo.Хранилище_множеств_U SET Описание = {description_nmU} WHERE Код_М_U = {nmU}";
+            else
+            { //добавить
+                if (fromFree_nmUs)
+                {//из свободных множеств
+                    query = $"UPDATE dbo.Хранилище_множеств_U SET [Номер_заявки] = {orderNum} WHERE Код_М_U = {freeIdnmU}"; //oldIdnmU
+                }
+                else
+                { //новое множество
+                    if (addLikeFree)
+                    {//добавить без привязки к заявке
+                        query = $"INSERT INTO dbo.Хранилище_множеств_U( Номер_заявки, Описание) " +
+                                $"OUTPUT Inserted.Код_М_U " +
+                                $"VALUES(null, '{description_nmU}')";
+                    }
+                    else
+                    { //добваить к заявке
+                        query = $"INSERT INTO dbo.Хранилище_множеств_U( Номер_заявки, Описание) " +
+                                $"OUTPUT Inserted.Код_М_U " +
+                                $"VALUES({orderNum}, '{description_nmU}')";
+                    }
+                }
+            }
             _ = Execute(connectionString, query);
         }
+
+
+        public static void InsertOrUpdate_nmX(string connectionString, int orderNum, int nmU, string description_nmU, bool U_btnStatChange, bool addLikeFree, bool fromFree_nmUs, int freeIdnmU)
+        {
+            string query;
+            if (!U_btnStatChange) //изменить
+                query = $"UPDATE dbo.[Лингвистические_переменные_Х] SET [Имя_набора_ЛП] = {description_nmU} WHERE Код_ЛП = {freeIdnmU}"; 
+            else
+            { //добавить
+                if (fromFree_nmUs)
+                {//из свободных наборов ЛП
+                    query = $"UPDATE dbo.Лингвистические_переменные_Х SET [Код_М_U] = {nmU} WHERE [Код_ЛП] = {freeIdnmU}"; //oldIdnmU
+                }
+                else
+                { //новое множество
+                    if (addLikeFree)
+                    {//добавить без привязки к nmU
+                        query = $"INSERT INTO dbo.Лингвистические_переменные_Х( Код_М_U, Имя_набора_ЛП) " +
+                                $"OUTPUT Inserted.Код_ЛП " +
+                                $"VALUES(null, '{description_nmU}')";
+                    }
+                    else
+                    { //добваить к nmU
+                        query = $"INSERT INTO dbo.Лингвистические_переменные_Х( Код_М_U, Имя_набора_ЛП) " +
+                                $"OUTPUT Inserted.Код_ЛП " +
+                                $"VALUES({nmU}, '{description_nmU}')";
+                    }
+                }
+            }
+            _ = Execute(connectionString, query);
+        }
+
+
         public static void DeleteSetsU_U(string connectionString, int orderNum, int ID_mU, SetsParams setsParams)
         {
             var query = $"SELECT Код_ЛП FROM dbo.Хранилище_множеств_U AS хму " +
@@ -343,7 +429,7 @@ namespace isFCAwf
             var drSelectRes = Execute(connectionString, query).Rows;
             for (int i = 0; drSelectRes.Count != 0 && i < drSelectRes.Count; i++)
             {
-                int LP_ID = (int)drSelectRes[i]["Код_ЛП"];
+                int.TryParse(drSelectRes[i]["Код_ЛП"].ToString(), out int LP_ID);
                 query = "";
                 switch (setsParams.dResult_X)
                 {

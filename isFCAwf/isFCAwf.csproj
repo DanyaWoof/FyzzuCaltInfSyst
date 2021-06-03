@@ -71,6 +71,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FreeSets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FreeSets.Designer.cs">
+      <DependentUpon>FreeSets.cs</DependentUpon>
+    </Compile>
     <Compile Include="FuzzyCounter.cs" />
     <Compile Include="InformationCollectorForm.cs">
       <SubType>Form</SubType>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CountForm.resx">
       <DependentUpon>CountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FreeSets.resx">
+      <DependentUpon>FreeSets.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformationCollectorForm.resx">
       <DependentUpon>InformationCollectorForm.cs</DependentUpon>

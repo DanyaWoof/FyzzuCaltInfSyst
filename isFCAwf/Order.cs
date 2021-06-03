@@ -42,7 +42,16 @@ namespace isFCAwf
 
     }
 
-    public class MasterOrder : Order
-    { }
+    public class Selected_nmA_or_nmLP
+    {
+        public bool Is_nmA { get; set; }
+        public bool ID_NM { get; set; }
+        public string Name { get; set; }
+        public double M1 { get; set; }
+        public double M2 { get; set; }
+        public double A { get; set; }
+        public double B { get; set; }
+
+    }
 
 }

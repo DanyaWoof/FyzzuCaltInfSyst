@@ -34,7 +34,6 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvOrders = new System.Windows.Forms.DataGridView();
-            this.bsOrders = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -46,6 +45,7 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button18 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
@@ -66,60 +66,56 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.bsSelectedOrderData = new System.Windows.Forms.BindingSource(this.components);
-            this.bsSetsData = new System.Windows.Forms.BindingSource(this.components);
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.gbNMU_X = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.rbmX = new System.Windows.Forms.RadioButton();
+            this.rbmU = new System.Windows.Forms.RadioButton();
+            this.lbID = new System.Windows.Forms.Label();
+            this.ID_mU = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.rbToOrder = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radioButton13 = new System.Windows.Forms.RadioButton();
-            this.radioButton12 = new System.Windows.Forms.RadioButton();
-            this.radioButton11 = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.rbFromFree = new System.Windows.Forms.RadioButton();
+            this.rbNew = new System.Windows.Forms.RadioButton();
+            this.rbFree = new System.Windows.Forms.RadioButton();
+            this.tbDesc = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button15 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.radioButton14 = new System.Windows.Forms.RadioButton();
-            this.radioButton15 = new System.Windows.Forms.RadioButton();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.radioButton16 = new System.Windows.Forms.RadioButton();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.bsOrders = new System.Windows.Forms.BindingSource(this.components);
+            this.bsSelectedOrderData = new System.Windows.Forms.BindingSource(this.components);
+            this.bsSetsData = new System.Windows.Forms.BindingSource(this.components);
             this.gbFreeOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOrders)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedOrderData)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSetsData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSelectedOrderData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSetsData)).BeginInit();
-            this.groupBox4.SuspendLayout();
+            this.gbNMU_X.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSelectedOrderData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSetsData)).BeginInit();
             this.SuspendLayout();
             // 
             // BackToTheAuthorizeBTN
@@ -301,10 +297,20 @@
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Location = new System.Drawing.Point(1, 216);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(883, 231);
+            this.groupBox1.Size = new System.Drawing.Size(883, 218);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Заявка №";
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(471, 13);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(131, 34);
+            this.button18.TabIndex = 2;
+            this.button18.Text = "Отобразить/свернуть все свободные";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // groupBox2
             // 
@@ -367,12 +373,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(782, 176);
+            this.button1.Location = new System.Drawing.Point(782, 161);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 48);
             this.button1.TabIndex = 0;
             this.button1.Text = "Работать со множеством";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -386,7 +393,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(792, 133);
+            this.button12.Location = new System.Drawing.Point(792, 114);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(75, 23);
             this.button12.TabIndex = 0;
@@ -396,7 +403,7 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(792, 104);
+            this.button11.Location = new System.Drawing.Point(792, 85);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 0;
@@ -412,10 +419,11 @@
             this.button3.TabIndex = 0;
             this.button3.Text = "Обновить";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(792, 75);
+            this.button4.Location = new System.Drawing.Point(792, 56);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 0;
@@ -433,9 +441,9 @@
             this.groupBox3.Controls.Add(this.button5);
             this.groupBox3.Controls.Add(this.button7);
             this.groupBox3.Controls.Add(this.button9);
-            this.groupBox3.Location = new System.Drawing.Point(1, 446);
+            this.groupBox3.Location = new System.Drawing.Point(1, 427);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(883, 231);
+            this.groupBox3.Size = new System.Drawing.Size(883, 212);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Множества U";
@@ -473,7 +481,7 @@
             this.dgvSetsData.Location = new System.Drawing.Point(0, 42);
             this.dgvSetsData.Name = "dgvSetsData";
             this.dgvSetsData.ReadOnly = true;
-            this.dgvSetsData.Size = new System.Drawing.Size(776, 150);
+            this.dgvSetsData.Size = new System.Drawing.Size(776, 170);
             this.dgvSetsData.TabIndex = 0;
             this.dgvSetsData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSetsData_CellClick);
             // 
@@ -525,57 +533,81 @@
             this.button9.Text = "Обновить";
             this.button9.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // gbNMU_X
             // 
-            this.groupBox4.Controls.Add(this.groupBox7);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.textBox7);
-            this.groupBox4.Controls.Add(this.comboBox1);
-            this.groupBox4.Controls.Add(this.textBox2);
-            this.groupBox4.Controls.Add(this.button8);
-            this.groupBox4.Controls.Add(this.button6);
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.radioButton3);
-            this.groupBox4.Controls.Add(this.groupBox5);
-            this.groupBox4.Controls.Add(this.radioButton11);
-            this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Location = new System.Drawing.Point(890, 216);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(264, 231);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Добавить / изменить множество U и X";
+            this.gbNMU_X.Controls.Add(this.groupBox7);
+            this.gbNMU_X.Controls.Add(this.lbID);
+            this.gbNMU_X.Controls.Add(this.ID_mU);
+            this.gbNMU_X.Controls.Add(this.button8);
+            this.gbNMU_X.Controls.Add(this.button6);
+            this.gbNMU_X.Controls.Add(this.label3);
+            this.gbNMU_X.Controls.Add(this.rbToOrder);
+            this.gbNMU_X.Controls.Add(this.groupBox5);
+            this.gbNMU_X.Controls.Add(this.rbFree);
+            this.gbNMU_X.Controls.Add(this.tbDesc);
+            this.gbNMU_X.Location = new System.Drawing.Point(890, 12);
+            this.gbNMU_X.Name = "gbNMU_X";
+            this.gbNMU_X.Size = new System.Drawing.Size(264, 315);
+            this.gbNMU_X.TabIndex = 2;
+            this.gbNMU_X.TabStop = false;
+            this.gbNMU_X.Text = "Добавить / изменить множество U и X";
             // 
-            // label4
+            // groupBox7
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(148, 36);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "ID_mU";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.groupBox7.Controls.Add(this.rbmX);
+            this.groupBox7.Controls.Add(this.rbmU);
+            this.groupBox7.Location = new System.Drawing.Point(10, 13);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(191, 23);
+            this.groupBox7.TabIndex = 8;
+            this.groupBox7.TabStop = false;
             // 
-            // comboBox1
+            // rbmX
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(151, 80);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(86, 21);
-            this.comboBox1.TabIndex = 6;
+            this.rbmX.AutoSize = true;
+            this.rbmX.Location = new System.Drawing.Point(138, 3);
+            this.rbmX.Name = "rbmX";
+            this.rbmX.Size = new System.Drawing.Size(40, 17);
+            this.rbmX.TabIndex = 1;
+            this.rbmX.TabStop = true;
+            this.rbmX.Text = "mX";
+            this.rbmX.UseVisualStyleBackColor = true;
+            this.rbmX.CheckedChanged += new System.EventHandler(this.radioButton15_CheckedChanged);
             // 
-            // textBox2
+            // rbmU
             // 
-            this.textBox2.Location = new System.Drawing.Point(151, 54);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(86, 20);
-            this.textBox2.TabIndex = 5;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.rbmU.AutoSize = true;
+            this.rbmU.Checked = true;
+            this.rbmU.Location = new System.Drawing.Point(6, 4);
+            this.rbmU.Name = "rbmU";
+            this.rbmU.Size = new System.Drawing.Size(41, 17);
+            this.rbmU.TabIndex = 1;
+            this.rbmU.TabStop = true;
+            this.rbmU.Text = "mU";
+            this.rbmU.UseVisualStyleBackColor = true;
+            this.rbmU.CheckedChanged += new System.EventHandler(this.radioButton14_CheckedChanged);
+            // 
+            // lbID
+            // 
+            this.lbID.AutoSize = true;
+            this.lbID.Location = new System.Drawing.Point(18, 145);
+            this.lbID.Name = "lbID";
+            this.lbID.Size = new System.Drawing.Size(40, 13);
+            this.lbID.TabIndex = 7;
+            this.lbID.Text = "ID_mU";
+            this.lbID.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // ID_mU
+            // 
+            this.ID_mU.Location = new System.Drawing.Point(21, 163);
+            this.ID_mU.Name = "ID_mU";
+            this.ID_mU.Size = new System.Drawing.Size(86, 20);
+            this.ID_mU.TabIndex = 5;
+            this.ID_mU.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(16, 194);
+            this.button8.Location = new System.Drawing.Point(16, 270);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 4;
@@ -585,7 +617,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(162, 194);
+            this.button6.Location = new System.Drawing.Point(162, 270);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 4;
@@ -596,74 +628,78 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 128);
+            this.label3.Location = new System.Drawing.Point(9, 204);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Описание";
             // 
-            // radioButton3
+            // rbToOrder
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(12, 57);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(70, 17);
-            this.radioButton3.TabIndex = 1;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "к заявке";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbToOrder.AutoSize = true;
+            this.rbToOrder.Checked = true;
+            this.rbToOrder.Location = new System.Drawing.Point(12, 76);
+            this.rbToOrder.Name = "rbToOrder";
+            this.rbToOrder.Size = new System.Drawing.Size(70, 17);
+            this.rbToOrder.TabIndex = 1;
+            this.rbToOrder.TabStop = true;
+            this.rbToOrder.Text = "к заявке";
+            this.rbToOrder.UseVisualStyleBackColor = true;
+            this.rbToOrder.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.radioButton13);
-            this.groupBox5.Controls.Add(this.radioButton12);
-            this.groupBox5.Location = new System.Drawing.Point(6, 66);
+            this.groupBox5.Controls.Add(this.rbFromFree);
+            this.groupBox5.Controls.Add(this.rbNew);
+            this.groupBox5.Location = new System.Drawing.Point(6, 85);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(119, 53);
+            this.groupBox5.Size = new System.Drawing.Size(216, 53);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             // 
-            // radioButton13
+            // rbFromFree
             // 
-            this.radioButton13.AutoSize = true;
-            this.radioButton13.Location = new System.Drawing.Point(6, 30);
-            this.radioButton13.Name = "radioButton13";
-            this.radioButton13.Size = new System.Drawing.Size(95, 17);
-            this.radioButton13.TabIndex = 1;
-            this.radioButton13.Text = "из свободных";
-            this.radioButton13.UseVisualStyleBackColor = true;
+            this.rbFromFree.AutoSize = true;
+            this.rbFromFree.Location = new System.Drawing.Point(6, 30);
+            this.rbFromFree.Name = "rbFromFree";
+            this.rbFromFree.Size = new System.Drawing.Size(95, 17);
+            this.rbFromFree.TabIndex = 1;
+            this.rbFromFree.Text = "из свободных";
+            this.rbFromFree.UseVisualStyleBackColor = true;
+            this.rbFromFree.CheckedChanged += new System.EventHandler(this.radioButton13_CheckedChanged);
             // 
-            // radioButton12
+            // rbNew
             // 
-            this.radioButton12.AutoSize = true;
-            this.radioButton12.Checked = true;
-            this.radioButton12.Location = new System.Drawing.Point(6, 10);
-            this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(55, 17);
-            this.radioButton12.TabIndex = 1;
-            this.radioButton12.TabStop = true;
-            this.radioButton12.Text = "новое";
-            this.radioButton12.UseVisualStyleBackColor = true;
+            this.rbNew.AutoSize = true;
+            this.rbNew.Checked = true;
+            this.rbNew.Location = new System.Drawing.Point(6, 10);
+            this.rbNew.Name = "rbNew";
+            this.rbNew.Size = new System.Drawing.Size(55, 17);
+            this.rbNew.TabIndex = 1;
+            this.rbNew.TabStop = true;
+            this.rbNew.Text = "новое";
+            this.rbNew.UseVisualStyleBackColor = true;
+            this.rbNew.CheckedChanged += new System.EventHandler(this.radioButton12_CheckedChanged);
             // 
-            // radioButton11
+            // rbFree
             // 
-            this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(12, 40);
-            this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(79, 17);
-            this.radioButton11.TabIndex = 1;
-            this.radioButton11.TabStop = true;
-            this.radioButton11.Text = "свободное";
-            this.radioButton11.UseVisualStyleBackColor = true;
+            this.rbFree.AutoSize = true;
+            this.rbFree.Location = new System.Drawing.Point(12, 59);
+            this.rbFree.Name = "rbFree";
+            this.rbFree.Size = new System.Drawing.Size(79, 17);
+            this.rbFree.TabIndex = 1;
+            this.rbFree.TabStop = true;
+            this.rbFree.Text = "свободное";
+            this.rbFree.UseVisualStyleBackColor = true;
+            this.rbFree.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged);
             // 
-            // textBox1
+            // tbDesc
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 143);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(225, 45);
-            this.textBox1.TabIndex = 0;
+            this.tbDesc.Location = new System.Drawing.Point(12, 219);
+            this.tbDesc.Multiline = true;
+            this.tbDesc.Name = "tbDesc";
+            this.tbDesc.Size = new System.Drawing.Size(225, 45);
+            this.tbDesc.TabIndex = 0;
             // 
             // groupBox6
             // 
@@ -674,7 +710,6 @@
             this.groupBox6.Controls.Add(this.label7);
             this.groupBox6.Controls.Add(this.label8);
             this.groupBox6.Controls.Add(this.label5);
-            this.groupBox6.Controls.Add(this.comboBox2);
             this.groupBox6.Controls.Add(this.textBox5);
             this.groupBox6.Controls.Add(this.textBox10);
             this.groupBox6.Controls.Add(this.textBox8);
@@ -685,42 +720,138 @@
             this.groupBox6.Controls.Add(this.button15);
             this.groupBox6.Controls.Add(this.button17);
             this.groupBox6.Controls.Add(this.radioButton16);
-            this.groupBox6.Location = new System.Drawing.Point(890, 446);
+            this.groupBox6.Location = new System.Drawing.Point(890, 333);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(264, 207);
+            this.groupBox6.Size = new System.Drawing.Size(264, 306);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Добавить nmA/nmLP";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(114, 159);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(21, 13);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "m2";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(122, 218);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(13, 13);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "b";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(122, 192);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(13, 13);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "a";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(118, 130);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(21, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "m1";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(193, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "ID_mA/mLP";
+            this.label7.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 78);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Имя";
+            this.label8.Click += new System.EventHandler(this.label4_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 18);
+            this.label5.Location = new System.Drawing.Point(7, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "ID_mU";
             this.label5.Click += new System.EventHandler(this.label4_Click);
             // 
-            // comboBox2
+            // textBox5
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(183, 50);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(69, 21);
-            this.comboBox2.TabIndex = 6;
+            this.textBox5.Enabled = false;
+            this.textBox5.Location = new System.Drawing.Point(183, 44);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(69, 20);
+            this.textBox5.TabIndex = 5;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Enabled = false;
+            this.textBox10.Location = new System.Drawing.Point(141, 215);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(96, 20);
+            this.textBox10.TabIndex = 5;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Enabled = false;
+            this.textBox8.Location = new System.Drawing.Point(141, 189);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(96, 20);
+            this.textBox8.TabIndex = 5;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Enabled = false;
+            this.textBox9.Location = new System.Drawing.Point(141, 157);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(96, 20);
+            this.textBox9.TabIndex = 5;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Enabled = false;
+            this.textBox6.Location = new System.Drawing.Point(141, 128);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(96, 20);
+            this.textBox6.TabIndex = 5;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Enabled = false;
+            this.textBox4.Location = new System.Drawing.Point(10, 94);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(212, 20);
+            this.textBox4.TabIndex = 5;
             // 
             // textBox3
             // 
             this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(10, 36);
+            this.textBox3.Location = new System.Drawing.Point(10, 46);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(72, 20);
             this.textBox3.TabIndex = 5;
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(16, 173);
+            this.button15.Location = new System.Drawing.Point(16, 261);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(75, 23);
             this.button15.TabIndex = 4;
@@ -729,124 +860,12 @@
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(162, 173);
+            this.button17.Location = new System.Drawing.Point(162, 261);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(75, 23);
             this.button17.TabIndex = 4;
             this.button17.Text = "сохранить";
             this.button17.UseVisualStyleBackColor = true;
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(471, 13);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(131, 34);
-            this.button18.TabIndex = 2;
-            this.button18.Text = "Отобразить/свернуть все свободные";
-            this.button18.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(183, 27);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(69, 20);
-            this.textBox5.TabIndex = 5;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(193, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "ID_mA/mLP";
-            this.label7.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(10, 74);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(212, 20);
-            this.textBox4.TabIndex = 5;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 58);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(29, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Имя";
-            this.label8.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // textBox6
-            // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(32, 103);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(96, 20);
-            this.textBox6.TabIndex = 5;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(151, 119);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(86, 20);
-            this.textBox7.TabIndex = 5;
-            this.textBox7.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(148, 101);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "ID_X";
-            this.label6.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.radioButton15);
-            this.groupBox7.Controls.Add(this.radioButton14);
-            this.groupBox7.Location = new System.Drawing.Point(10, 13);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(191, 23);
-            this.groupBox7.TabIndex = 8;
-            this.groupBox7.TabStop = false;
-            // 
-            // radioButton14
-            // 
-            this.radioButton14.AutoSize = true;
-            this.radioButton14.Checked = true;
-            this.radioButton14.Location = new System.Drawing.Point(6, 4);
-            this.radioButton14.Name = "radioButton14";
-            this.radioButton14.Size = new System.Drawing.Size(41, 17);
-            this.radioButton14.TabIndex = 1;
-            this.radioButton14.TabStop = true;
-            this.radioButton14.Text = "mU";
-            this.radioButton14.UseVisualStyleBackColor = true;
-            // 
-            // radioButton15
-            // 
-            this.radioButton15.AutoSize = true;
-            this.radioButton15.Location = new System.Drawing.Point(138, 3);
-            this.radioButton15.Name = "radioButton15";
-            this.radioButton15.Size = new System.Drawing.Size(40, 17);
-            this.radioButton15.TabIndex = 1;
-            this.radioButton15.TabStop = true;
-            this.radioButton15.Text = "mX";
-            this.radioButton15.UseVisualStyleBackColor = true;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(32, 132);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(96, 20);
-            this.textBox8.TabIndex = 5;
             // 
             // radioButton16
             // 
@@ -858,66 +877,15 @@
             this.radioButton16.TabStop = true;
             this.radioButton16.Text = "добавить имеющееся";
             this.radioButton16.UseVisualStyleBackColor = true;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Enabled = false;
-            this.textBox9.Location = new System.Drawing.Point(162, 103);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(87, 20);
-            this.textBox9.TabIndex = 5;
-            // 
-            // textBox10
-            // 
-            this.textBox10.Enabled = false;
-            this.textBox10.Location = new System.Drawing.Point(162, 132);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(87, 20);
-            this.textBox10.TabIndex = 5;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 105);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(21, 13);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "m1";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 135);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(13, 13);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "a";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(143, 135);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(13, 13);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "b";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(135, 105);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(21, 13);
-            this.label12.TabIndex = 8;
-            this.label12.Text = "m2";
+            this.radioButton16.CheckedChanged += new System.EventHandler(this.radioButton16_CheckedChanged);
             // 
             // SetsExpertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1406, 699);
+            this.ClientSize = new System.Drawing.Size(1163, 651);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.gbNMU_X);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbFreeOrders);
@@ -928,7 +896,6 @@
             this.gbFreeOrders.ResumeLayout(false);
             this.gbFreeOrders.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOrders)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -936,16 +903,17 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSetsData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSelectedOrderData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSetsData)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.gbNMU_X.ResumeLayout(false);
+            this.gbNMU_X.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSelectedOrderData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSetsData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -986,27 +954,25 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gbNMU_X;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button CloseOrderBtn;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton rbToOrder;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton radioButton13;
-        private System.Windows.Forms.RadioButton radioButton12;
-        private System.Windows.Forms.RadioButton radioButton11;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.RadioButton rbFromFree;
+        private System.Windows.Forms.RadioButton rbNew;
+        private System.Windows.Forms.RadioButton rbFree;
+        private System.Windows.Forms.TextBox tbDesc;
+        private System.Windows.Forms.Label lbID;
+        private System.Windows.Forms.TextBox ID_mU;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button17;
@@ -1017,10 +983,8 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.RadioButton radioButton15;
-        private System.Windows.Forms.RadioButton radioButton14;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.RadioButton rbmX;
+        private System.Windows.Forms.RadioButton rbmU;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
