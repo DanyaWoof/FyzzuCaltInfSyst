@@ -42,7 +42,7 @@ namespace isFCAwf
 
         public void dgvX_Update()
         {
-            bindingSourceU.DataSource = DBConnectCreator.GetFreeFuzzySets_ofSet_X(sqlConnString, selected_U, checkBox1.Checked);
+            bindingSourceX.DataSource = DBConnectCreator.GetFreeFuzzySets_ofSet_X(sqlConnString, selected_U, checkBox1.Checked);
         }
         public void dgvnmA_Update()
         {
@@ -70,6 +70,11 @@ namespace isFCAwf
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             dgvnmA_Update();
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            dgvnmLPX_Update();
         }
     }
 }

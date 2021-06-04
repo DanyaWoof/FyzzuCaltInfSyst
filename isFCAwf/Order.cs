@@ -42,15 +42,20 @@ namespace isFCAwf
 
     }
 
-    public class Selected_nmA_or_nmLP
+    public class NmA_or_nmLP
     {
         public bool Is_nmA { get; set; }
-        public bool ID_NM { get; set; }
+        public bool Is_needToAdd_notUpdate { get; set; }
+        public bool FromFree_nmulp { get; set; }
+        public int IDfree { get; set; }
+        public int ID_nmU_or_nmX { get; set; }
         public string Name { get; set; }
         public double M1 { get; set; }
         public double M2 { get; set; }
         public double A { get; set; }
         public double B { get; set; }
+
+        public int ID_nmA_nmLP { get; set; }
 
     }
 

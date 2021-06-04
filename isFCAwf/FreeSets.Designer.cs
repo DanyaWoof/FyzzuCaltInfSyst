@@ -173,6 +173,7 @@
             this.checkBox3.TabIndex = 1;
             this.checkBox3.Text = "Показывать множества nmLP без связи с X";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // dgvnmLPX
             // 

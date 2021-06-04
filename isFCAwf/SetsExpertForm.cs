@@ -28,7 +28,7 @@ namespace isFCAwf
         {
             //groupBox1.Enabled = false;
             gbNMU_X.Visible = false;
-
+            addnmA_or_LP.Visible = false;
             //dgvOrders.DataSource = bsOrders;
             dgvSelectedOrderData.DataSource = bsSelectedOrderData;
             dgvSetsData.DataSource = bsSetsData;
@@ -272,16 +272,23 @@ namespace isFCAwf
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
             Update_dgvSetsData(ID_U);
+            selected_A = -1;
+            selected_X = -1;
         }
 
         private void radioButton10_CheckedChanged(object sender, EventArgs e)
         {
             Update_dgvSetsData(ID_U);
+            selected_A = -1;
+            selected_X = -1;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Cansel();
+            ID_U = -1;
+            selected_A = -1;
+            selected_X = -1;
         }
         public void Cansel()
         {
@@ -293,15 +300,24 @@ namespace isFCAwf
 
         private void CloseOrderBtn_Click(object sender, EventArgs e)
         {
-          //  DBConnectCreator.OrderClose(sqlConnString, id, savedSelectedOrderNum); //savedSelectedOrderNum;
+            if (savedSelectedOrderNum == -1)
+            {
+                MessageBox.Show("Не выбран заказ");
+                return;
+            }
+            DBConnectCreator.OrderClose(sqlConnString, savedSelectedOrderNum); //savedSelectedOrderNum;
         }
 
-        public int selectedLP_or_A = new int();
+        public int selected_A = -1;
+        public int selected_X = -1;
         private void dgvSetsData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && radioButton8.Checked && Int32.TryParse((dgvSetsData[0, e.RowIndex].Value.ToString()), out int selectedLP_or_A))
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && radioButton8.Checked && Int32.TryParse((dgvSetsData[1, e.RowIndex].Value.ToString()), out int selected_val))
             {
-                this.selectedLP_or_A = selectedLP_or_A;
+                if (radioButton9.Checked)
+                    selected_A = selected_val;
+                else
+                    selected_X = selected_val;
             }
         }
 
@@ -310,13 +326,81 @@ namespace isFCAwf
             U_btnStatChange = true;
             gbNMU_XCheckChanged();
         }
-        public bool isSelectToAddorUpdate_nmA;
+        public bool isSelectToAdd_notUpdate_nmaLp;
+
         private void button7_Click(object sender, EventArgs e)
         {
-            //isSelectToAddorUpdate_nmA
-            //selectedLP_or_A
+            isSelectToAdd_notUpdate_nmaLp = true;
+            StatChanger_addnmA_or_LP();
+            chb(true);
         }
+        private NmA_or_nmLP S_nmA_or_nmLP(out bool exept)
+        {
+            exept = false;
+            NmA_or_nmLP nmA_Or_NmLP = new NmA_or_nmLP();
 
+            if (ismnA)
+            {
+                nmA_Or_NmLP.Is_nmA = true;
+                nmA_Or_NmLP.ID_nmU_or_nmX = ID_U;
+            }
+            else
+            {
+                nmA_Or_NmLP.ID_nmU_or_nmX = selected_X;
+                nmA_Or_NmLP.Is_nmA = false;
+            }
+
+            if (isSelectToAdd_notUpdate_nmaLp)
+                nmA_Or_NmLP.Is_needToAdd_notUpdate = true;
+            else
+            {
+                nmA_Or_NmLP.Is_needToAdd_notUpdate = false;
+                if (ismnA)
+                    nmA_Or_NmLP.ID_nmA_nmLP = selected_A;
+                else
+                    nmA_Or_NmLP.ID_nmA_nmLP = selected_X;
+            }
+
+            if (cbnma_fromFree.Checked && tbfreeNmuID.Text != "")
+            {
+                nmA_Or_NmLP.FromFree_nmulp = false;
+                int.TryParse(tbfreeNmuID.Text, out int idFree);
+                nmA_Or_NmLP.IDfree = idFree;
+            }
+            else
+            {
+                if (int.TryParse(tbm1.Text, out _) & int.TryParse(tbm2.Text, out _) & int.TryParse(tba.Text, out _) & int.TryParse(tbb.Text, out _))
+                {
+                    nmA_Or_NmLP.Name = tbNMname.Text;
+                    nmA_Or_NmLP.M1 = int.Parse(tbm1.Text);
+                    nmA_Or_NmLP.M2 = int.Parse(tbm2.Text);
+                    nmA_Or_NmLP.A = int.Parse(tba.Text);
+                    nmA_Or_NmLP.B = int.Parse(tbb.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Одно из значений трапеции не задано");
+                    return nmA_Or_NmLP;
+                    exept = true;
+                }
+            }
+
+            return nmA_Or_NmLP;
+        }
+ 
+        public void nmaAdderAdnUpdater(NmA_or_nmLP S_nmA_or_nmLP)
+        {
+            if ((selected_A == -1 & selected_X == -1) && !isSelectToAdd_notUpdate_nmaLp)
+            {
+                MessageBox.Show("Не выбрано множество");
+                return;
+            }
+            if (true)
+            {
+
+            }
+            DBConnectCreator.AddorUpdate_nmA(sqlConnString, S_nmA_or_nmLP);
+        }
 
         private void button10_Click(object sender, EventArgs e)
         {
@@ -549,7 +633,81 @@ namespace isFCAwf
 
         private void radioButton16_CheckedChanged(object sender, EventArgs e)
         {
-            textBox5.Enabled = true;
+            //textBox5.Enabled = true;
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            addnmA_or_LP.Visible = false;
+            selected_A = -1;
+            selected_X = -1; 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            isSelectToAdd_notUpdate_nmaLp = false;
+            StatChanger_addnmA_or_LP();
+            chb(false);
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            var param = S_nmA_or_nmLP(out bool exept);
+            if (exept)
+                return;
+            nmaAdderAdnUpdater(param);
+            selected_A = -1;
+            selected_X = -1;
+            if (ID_U != -1)
+                Update_dgvSetsData(ID_U);
+        }
+
+        private void cbnma_fromFree_CheckedChanged(object sender, EventArgs e)
+        {
+            StatChanger_addnmA_or_LP();
+        }
+
+        public bool ismnA;
+        private void StatChanger_addnmA_or_LP()
+        {
+
+
+            addnmA_or_LP.Visible = true;
+            if (radioButton9.Checked)
+                ismnA = true;
+            else
+                ismnA = false;
+
+            if (cbnma_fromFree.Checked)
+                ch(false);
+            else
+                ch(true);
+
+            void ch(bool b)
+            {
+                tbfreeNmuID.Enabled = !b;
+
+                tbNMname.Enabled = b;
+                gbOldVal.Enabled = b;
+                tbm1.Enabled = b;
+                tbm2.Enabled = b;
+                tba.Enabled = b;
+                tbb.Enabled = b;
+            }
+
+        }
+        void chb(bool b)
+        {
+            cbnma_fromFree.Checked = b;
+            cbnma_fromFree.Enabled = b;
+            if (b)
+                cbnma_fromFree.Checked = !b;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (ID_U != -1)
+                Update_dgvSetsData(ID_U);
         }
     }
 }

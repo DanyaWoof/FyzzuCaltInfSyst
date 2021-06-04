@@ -200,9 +200,9 @@ namespace isFCAwf
             return result;
         }
 
-        public static DataTable GetFuzzySetsOfLingVar_X(string connectionString, int kodOfM_U)
+        public static DataTable GetFuzzySetsOfLingVar_X(string connectionString, int kodOfM_U) //bool isnmA_notLP
         {
-            var query = $"SELECT nmu.Код_М_U, лп.Код_НМ_ЛП, лп.Имя, лп.m1, лп.m2, лп.a, лп.b " +
+            var query = $"SELECT nmu.Код_М_U, лпX.Код_ЛП, лп.Код_НМ_ЛП, лп.Имя, лп.m1, лп.m2, лп.a, лп.b " +
                 $"FROM dbo.Хранилище_множеств_U AS nmU " +
                 $"LEFT JOIN dbo.Лингвистические_переменные_Х AS лпX ON лпX.Код_М_U = nmu.Код_М_U " +
                 $"LEFT JOIN dbo.ЛП_Нечеткие_множества AS лп ON  лп.Код_ЛП = лпX.Код_ЛП " +
@@ -313,7 +313,7 @@ namespace isFCAwf
                 var dr = Execute(connectionString, query).Rows[0];
                 clientdID = (int)dr["ID_клиента"];
             }
-            if (true) // метод для client.orderNum = -1 (если 1++ то по ID создать спязо в таб СписКлиентов)
+            if (true) // метод для client.orderNum = -1 (если 1++ то по ID создать связь в таб СписКлиентов)
             {
 
             }
@@ -321,6 +321,61 @@ namespace isFCAwf
 
         }
 
+        public static void AddorUpdate_nmA(string connectionString, NmA_or_nmLP nmA_nmLP) /////////////////////
+        {
+            string query;
+            if (nmA_nmLP.FromFree_nmulp)
+            {
+                if (nmA_nmLP.Is_nmA)
+                    query = $"UPDATE dbo.[Нечеткие_множества_A<u>] SET [Код_М_U] = { nmA_nmLP.ID_nmU_or_nmX} WHERE Код_НМ = {nmA_nmLP.IDfree}; ";
+                else
+                    query = $"UPDATE dbo.ЛП_Нечеткие_множества SET Код_ЛП = {nmA_nmLP.ID_nmU_or_nmX}  WHERE Код_НМ_ЛП = {nmA_nmLP.IDfree};";
+                _ = Execute(connectionString, query);
+                return;
+            }
+            if (nmA_nmLP.Is_needToAdd_notUpdate)
+            {
+                if (nmA_nmLP.Is_nmA)
+                {
+                    query = $"INSERT INTO dbo.[Нечеткие_множества_A<u>] (Код_М_U, Имя_НМ, m1, m2, a, b) " +
+                            $"OUTPUT Inserted.Код_НМ " +
+                            $"VALUES({nmA_nmLP.ID_nmU_or_nmX}, '{nmA_nmLP.Name}', {nmA_nmLP.M1}, {nmA_nmLP.M2}, {nmA_nmLP.A}, {nmA_nmLP.B})";
+                }
+                else
+                {
+                    query = $"INSERT INTO dbo.ЛП_Нечеткие_множества (Код_ЛП, Имя_НМ, m1, m2, a, b) " +
+                            $"OUTPUT Inserted.Код_НМ " +
+                            $"VALUES({nmA_nmLP.ID_nmU_or_nmX}, '{nmA_nmLP.Name}', {nmA_nmLP.M1}, {nmA_nmLP.M2}, {nmA_nmLP.A}, {nmA_nmLP.B})";
+                }
+            }
+            else
+            {//query = $"";
+
+                if (nmA_nmLP.Is_nmA)
+                {
+                    query = $"UPDATE dbo.[Нечеткие_множества_A<u>] SET " +
+                            $"[Код_М_U] = { nmA_nmLP.ID_nmU_or_nmX}, " +
+                            $"[Имя_НМ] = {nmA_nmLP.Name}, " +
+                            $"[m1] = {nmA_nmLP.M1}, " +
+                            $"[m2] = {nmA_nmLP.M2}, " +
+                            $"[a] = {nmA_nmLP.A}, " +
+                            $"[b] = {nmA_nmLP.B} " +
+                            $"WHERE Код_НМ = { nmA_nmLP.ID_nmA_nmLP };";
+                }
+                else
+                {
+                    query = $"UPDATE dbo.ЛП_Нечеткие_множества SET " +
+                            $"Код_ЛП = { nmA_nmLP.ID_nmU_or_nmX}, " +
+                            $"[Имя] = {nmA_nmLP.Name},  " +
+                            $"[m1] = {nmA_nmLP.M1}, " +
+                            $"[m2] = {nmA_nmLP.M2}, " +
+                            $"[a] = {nmA_nmLP.A}, " +
+                            $"[b] = {nmA_nmLP.B} " +
+                            $"WHERE Код_НМ_ЛП = { nmA_nmLP.ID_nmA_nmLP };";
+                }
+            }
+            _ = Execute(connectionString, query);
+        }
 
         public static void DeleteClientFromOrder(string connectionString, int orderNum, int clientID)
         {
