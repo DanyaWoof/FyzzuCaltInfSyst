@@ -670,8 +670,6 @@ namespace isFCAwf
         public bool ismnA;
         private void StatChanger_addnmA_or_LP()
         {
-
-
             addnmA_or_LP.Visible = true;
             if (radioButton9.Checked)
                 ismnA = true;
