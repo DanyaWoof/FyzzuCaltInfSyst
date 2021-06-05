@@ -343,8 +343,8 @@ namespace isFCAwf
                 }
                 else
                 {
-                    query = $"INSERT INTO dbo.ЛП_Нечеткие_множества (Код_ЛП, Имя_НМ, m1, m2, a, b) " +
-                            $"OUTPUT Inserted.Код_НМ " +
+                    query = $"INSERT INTO dbo.ЛП_Нечеткие_множества (Код_ЛП, Имя, m1, m2, a, b) " +
+                            $"OUTPUT Inserted.Код_НМ_ЛП " +
                             $"VALUES({nmA_nmLP.ID_nmU_or_nmX}, '{nmA_nmLP.Name}', {nmA_nmLP.M1}, {nmA_nmLP.M2}, {nmA_nmLP.A}, {nmA_nmLP.B})";
                 }
             }
@@ -532,6 +532,17 @@ namespace isFCAwf
             return result;
         }*/
 
-
+        public static DataTable GetnmuONorderNum(string connectionString, int orderNum)
+        {
+            var query = $"SELECT * FROM dbo.Хранилище_множеств_U WHERE Номер_заявки = {orderNum}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+        public static DataTable GetNmAonMnU(string connectionString, int ID_nmU)
+        {
+            var query = $"SELECT * FROM dbo.[Нечеткие_множества_A<u>] WHERE Код_М_U = {ID_nmU}";
+            var result = Execute(connectionString, query);
+            return result;
+        } 
     }
 }                                                                                                                   ////{info.Дата_выдачи?.ToString("\\'yyyy-MM-dd\\'") ?? "NULL"});";

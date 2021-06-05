@@ -40,7 +40,7 @@
             this.authBtn.Location = new System.Drawing.Point(60, 112);
             this.authBtn.Name = "authBtn";
             this.authBtn.Size = new System.Drawing.Size(151, 30);
-            this.authBtn.TabIndex = 0;
+            this.authBtn.TabIndex = 3;
             this.authBtn.Text = "Войти";
             this.authBtn.UseVisualStyleBackColor = true;
             this.authBtn.Click += new System.EventHandler(this.authBtn_Click);
@@ -51,7 +51,7 @@
             this.label1.Location = new System.Drawing.Point(25, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 10;
             this.label1.Text = "Логин";
             // 
             // label2
@@ -60,7 +60,7 @@
             this.label2.Location = new System.Drawing.Point(25, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 20;
             this.label2.Text = "Пароль";
             // 
             // textBox1
@@ -68,14 +68,14 @@
             this.textBox1.Location = new System.Drawing.Point(84, 26);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(151, 20);
-            this.textBox1.TabIndex = 3;
+            this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(84, 66);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(151, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBox2.TabIndex = 2;
             // 
             // AuthorizationForm
             // 

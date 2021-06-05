@@ -8,32 +8,36 @@ using System.Data.SqlClient;
 
 namespace isFCAwf
 {
-    class FuzzyCounter
+    public class FuzzyCounter
     {
-        private string nmu = "3";
+        public int nmu {get; set; }
+        public string sqlstringConn { get; set; }
+
         private string lsimbol = "(";
         private string rsimbol = ")";
         private char[] chArray = { '*', '/', '-', '+' };
         public List<int[,]> variableSets = new List<int[,]>(10);//$#A1#$
         public List<string[]> listVariableValuesNM = new List<string[]>(10);
-
-        public double[] GetRezult(string s) // TODO :передавать еще и код nmu | добавить обновление nmu
+        public List<string> resCount = new List<string>(10);
+        public double[] GetRezult(string s, out List<string> resOfCounts) // TODO :передавать еще и код nmu | добавить обновление nmu
         {
+            List<string> resultsOfCounts = new List<string>();
             string res = "";
+            List<string> rOfCounts = new List<string>();
             if (ParenthesesEquality(s, "$", "$", out int p))
-                res = AnalizatorStroki(s);
+                res = AnalizatorStroki(s, out rOfCounts);
             else
                 MessageBox.Show("Проверьте закрытость операндов символами $$");
+            resOfCounts = rOfCounts;
             return SearcherInPrivateCollection(res.Substring(1, res.Length - 2));
-
         }
 
-        private string AnalizatorStroki(string formStr)
+        private string AnalizatorStroki(string formStr, out List<string> lstr)
         {
             //formStr = formStr.Replace(" ", "");  //удаляем все пробелы
             string leftHalfStr, rightHalfStr, centerStr;
             int numofPairedBrackets; // кол-во пар скобок
-
+            List<string> resultsOfCounts = new List<string>();
             if (formStr.Contains(lsimbol) && formStr.Contains(rsimbol) && ParenthesesEquality(formStr, lsimbol, rsimbol, out numofPairedBrackets))  // Если в строке есть скобки, то строка разделяется на 3 подстроки таким образом: 
             {                                                    // -Основная строка разделяется на две части, где все что до "(" - левая, а все что после ")" - правая 
                                                                  //  и записываются во временные переменнык leftHalfStr и rightHalfStr.
@@ -42,8 +46,8 @@ namespace isFCAwf
                                                                  // -Цикл повторяется до тех пор, пока есть "()"
 
                 for (int i = 0; i < numofPairedBrackets; i++)
-
                 {
+                    resCount.Add(formStr);
                     int rCount = formStr.IndexOf(rsimbol); //определяем индекс первого вхождения в закрывающую скобку и 
 
                     string subString = formStr.Substring(0, rCount); // обрезаем строку до этого 
@@ -65,6 +69,7 @@ namespace isFCAwf
                     formStr = leftHalfStr + centerStr + rightHalfStr;
                 }
             }
+            lstr = resultsOfCounts;
             return PoiskOperandov(formStr);
         }
 
@@ -106,7 +111,7 @@ namespace isFCAwf
 
         private string PoiskOperandov(string str)
         {
-
+            resCount.Add(str);
             int[] rptr = new int[4]; // количество операторов по типу, где 0(1) - chArray[0] = * и т.д.
             string bufferStr = str;
             //string bufferStr = "$Инвестор1$+$Инвестор2$/$Инвестор3$";
@@ -140,15 +145,18 @@ namespace isFCAwf
                         leftStr = bufferStr.Substring(0, ls);
                         middleStr = bufferStr.Substring(ls, rs - ls);
                         rightStr = bufferStr.Substring(rs, bufferStr.Length - rs);
-                        bufferStr = leftStr + TwoOperandsCounter(middleStr, chArray[i]) + rightStr;
+                        bufferStr = leftStr + TwoOperandsCounter(middleStr, chArray[i], out string rescount) + rightStr;
+                        resCount.Add(rescount);
+                        resCount.Add(bufferStr);
                     }
                 }
             }
             return bufferStr;
         }
 
-        public string TwoOperandsCounter(string str, char ch) //str передается в подготовленном формаате $имя_подмножества$+-*/$имя_подмножества$
+        public string TwoOperandsCounter(string str, char ch, out string rescount) //str передается в подготовленном формаате $имя_подмножества$+-*/$имя_подмножества$
         {
+            rescount = str;
             int kodName; //promej
             double m1 = 0;
             double m2 = 0;
@@ -202,6 +210,7 @@ namespace isFCAwf
 
             kodName = listVariableValuesNM.Count() + 1; // ?? +0 ?
             string[] rez = { "A" + kodName.ToString(), m1.ToString(), m2.ToString(), a.ToString(), b.ToString() };
+            rescount = string.Join("_", rez);
             listVariableValuesNM.Add(rez);
             return "$#A" + kodName.ToString() + "#$";
         }
@@ -222,16 +231,17 @@ namespace isFCAwf
 
 
 
-        private double[] GetValuesNM(string nmuPK, string nmName) //код множества и имя подмножества // Подключение MS SQL
+        private double[] GetValuesNM(int nmuPK, string nmName) //код множества и имя подмножества // Подключение MS SQL
         {
             //AND [Имя_НМ] =  'Инвестор1'
-            string connectionString = @"Data Source=DESKTOP-EI0AJ7L\SQLEXPRESS;Initial Catalog=FuzzyCalc;Integrated Security=True";
-            string n_m_u = nmuPK; // вместо 2 нечеткие множества M_U
+            //string connectionString = @"Data Source=DESKTOP-EI0AJ7L\SQLEXPRESS;Initial Catalog=FuzzyCalc;Integrated Security=True";
+            int n_m_u = nmuPK; // вместо 2 нечеткие множества M_U
             if (nmName != "")
                 nmName = " AND Имя_НМ = '" + nmName + "'";
 
             string query = $"SELECT Имя_НМ, m1, m2, a, b FROM dbo.[Нечеткие_множества_A<u>] WHERE Код_М_U = {n_m_u} {nmName}";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(sqlstringConn))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
