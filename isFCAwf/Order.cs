@@ -50,10 +50,10 @@ namespace isFCAwf
         public int IDfree { get; set; }
         public int ID_nmU_or_nmX { get; set; }
         public string Name { get; set; }
-        public double M1 { get; set; }
-        public double M2 { get; set; }
-        public double A { get; set; }
-        public double B { get; set; }
+        public int M1 { get; set; }
+        public int M2 { get; set; }
+        public int A { get; set; }
+        public int B { get; set; }
 
         public int ID_nmA_nmLP { get; set; }
 

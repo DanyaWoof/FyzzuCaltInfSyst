@@ -28,11 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbnewnmaname = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbresCount = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tbAconName = new System.Windows.Forms.TextBox();
             this.tbAval = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbnewnm = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lbofNma = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,16 +48,46 @@
             this.label13 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.tbValLP = new System.Windows.Forms.TextBox();
+            this.tbNmaVal = new System.Windows.Forms.TextBox();
+            this.lbofnmLP = new System.Windows.Forms.ListBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lbofNma2 = new System.Windows.Forms.ListBox();
+            this.binsous_lbofNma2 = new System.Windows.Forms.BindingSource(this.components);
+            this.lbSelectedToFilterNmA = new System.Windows.Forms.ListBox();
+            this.binSOurForFilterNMA = new System.Windows.Forms.BindingSource(this.components);
+            this.label15 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbnmX = new System.Windows.Forms.ComboBox();
+            this.asdas = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.cbnmU = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbdesc = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.lbresCount = new System.Windows.Forms.ListBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.binSOUSnma = new System.Windows.Forms.BindingSource(this.components);
+            this.lbResFilter = new System.Windows.Forms.ListBox();
+            this.chbDebagYes = new System.Windows.Forms.CheckBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.binsous_lbofNma2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binSOurForFilterNMA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binSOUSnma)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -66,12 +103,14 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.tbnewnmaname);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.lbresCount);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.tbAconName);
             this.tabPage1.Controls.Add(this.tbAval);
-            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.tbnewnm);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.lbofNma);
@@ -88,6 +127,49 @@
             this.tabPage1.Text = "Арифметический расчет";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(704, 156);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "с именем";
+            // 
+            // tbnewnmaname
+            // 
+            this.tbnewnmaname.Location = new System.Drawing.Point(703, 174);
+            this.tbnewnmaname.Name = "tbnewnmaname";
+            this.tbnewnmaname.Size = new System.Drawing.Size(129, 20);
+            this.tbnewnmaname.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 203);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Процесс расчета";
+            // 
+            // lbresCount
+            // 
+            this.lbresCount.FormattingEnabled = true;
+            this.lbresCount.Location = new System.Drawing.Point(9, 219);
+            this.lbresCount.Name = "lbresCount";
+            this.lbresCount.Size = new System.Drawing.Size(834, 186);
+            this.lbresCount.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(349, 166);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(16, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "->";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // tbAconName
             // 
             this.tbAconName.Location = new System.Drawing.Point(371, 34);
@@ -102,13 +184,23 @@
             this.tbAval.Size = new System.Drawing.Size(134, 20);
             this.tbAval.TabIndex = 6;
             // 
-            // textBox2
+            // tbnewnm
             // 
-            this.textBox2.Location = new System.Drawing.Point(371, 151);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(134, 43);
-            this.textBox2.TabIndex = 5;
+            this.tbnewnm.Location = new System.Drawing.Point(371, 151);
+            this.tbnewnm.Multiline = true;
+            this.tbnewnm.Name = "tbnewnm";
+            this.tbnewnm.Size = new System.Drawing.Size(134, 43);
+            this.tbnewnm.TabIndex = 5;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(529, 151);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(157, 43);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Добавить результат к множеству U";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -159,7 +251,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(224, 75);
+            this.label13.Location = new System.Drawing.Point(224, 66);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(119, 13);
             this.label13.TabIndex = 1;
@@ -167,27 +259,232 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(224, 91);
+            this.textBox1.Location = new System.Drawing.Point(224, 82);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(620, 43);
+            this.textBox1.Size = new System.Drawing.Size(620, 52);
             this.textBox1.TabIndex = 0;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button7);
+            this.tabPage2.Controls.Add(this.chbDebagYes);
+            this.tabPage2.Controls.Add(this.lbResFilter);
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.button4);
+            this.tabPage2.Controls.Add(this.button6);
+            this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Controls.Add(this.tbValLP);
+            this.tabPage2.Controls.Add(this.tbNmaVal);
+            this.tabPage2.Controls.Add(this.lbofnmLP);
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.lbofNma2);
+            this.tabPage2.Controls.Add(this.lbSelectedToFilterNmA);
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.cbnmX);
+            this.tabPage2.Controls.Add(this.asdas);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(899, 423);
+            this.tabPage2.Size = new System.Drawing.Size(858, 423);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Нечеткая фильтрация";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(219, 126);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(55, 32);
+            this.button5.TabIndex = 23;
+            this.button5.Text = "<-";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(219, 88);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(55, 32);
+            this.button4.TabIndex = 23;
+            this.button4.Text = "->";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(0, 0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(79, 23);
+            this.button6.TabIndex = 23;
+            this.button6.Text = "сбросить";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(9, 214);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(113, 43);
+            this.button3.TabIndex = 23;
+            this.button3.Text = "Фильтровать";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // tbValLP
+            // 
+            this.tbValLP.Location = new System.Drawing.Point(504, 143);
+            this.tbValLP.Name = "tbValLP";
+            this.tbValLP.Size = new System.Drawing.Size(112, 20);
+            this.tbValLP.TabIndex = 22;
+            // 
+            // tbNmaVal
+            // 
+            this.tbNmaVal.Location = new System.Drawing.Point(503, 62);
+            this.tbNmaVal.Name = "tbNmaVal";
+            this.tbNmaVal.Size = new System.Drawing.Size(113, 20);
+            this.tbNmaVal.TabIndex = 22;
+            // 
+            // lbofnmLP
+            // 
+            this.lbofnmLP.FormattingEnabled = true;
+            this.lbofnmLP.Location = new System.Drawing.Point(641, 45);
+            this.lbofnmLP.Name = "lbofnmLP";
+            this.lbofnmLP.Size = new System.Drawing.Size(203, 160);
+            this.lbofnmLP.TabIndex = 17;
+            this.lbofnmLP.SelectedValueChanged += new System.EventHandler(this.lbofnmLP_SelectedValueChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(622, 146);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(13, 13);
+            this.label17.TabIndex = 13;
+            this.label17.Text = "=";
+            // 
+            // lbofNma2
+            // 
+            this.lbofNma2.DataSource = this.binsous_lbofNma2;
+            this.lbofNma2.FormattingEnabled = true;
+            this.lbofNma2.Location = new System.Drawing.Point(10, 42);
+            this.lbofNma2.Name = "lbofNma2";
+            this.lbofNma2.Size = new System.Drawing.Size(203, 160);
+            this.lbofNma2.TabIndex = 17;
+            this.lbofNma2.SelectedValueChanged += new System.EventHandler(this.lbofNma2_SelectedValueChanged);
+            // 
+            // lbSelectedToFilterNmA
+            // 
+            this.lbSelectedToFilterNmA.DataSource = this.binSOurForFilterNMA;
+            this.lbSelectedToFilterNmA.FormattingEnabled = true;
+            this.lbSelectedToFilterNmA.Location = new System.Drawing.Point(278, 42);
+            this.lbSelectedToFilterNmA.Name = "lbSelectedToFilterNmA";
+            this.lbSelectedToFilterNmA.Size = new System.Drawing.Size(203, 160);
+            this.lbSelectedToFilterNmA.TabIndex = 17;
+            this.lbSelectedToFilterNmA.SelectedValueChanged += new System.EventHandler(this.lbSelectedToFilterNmA_SelectedValueChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(216, 65);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(61, 13);
+            this.label15.TabIndex = 13;
+            this.label15.Text = "=========";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(240, 65);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(61, 13);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "=========";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(487, 65);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(13, 13);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "=";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(501, 127);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(83, 13);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "Выбранная ЛП";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(749, 29);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(95, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Множества nmLP";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(10, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Множества nmA";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(500, 46);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(134, 13);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Выбранное множество А";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(278, 26);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(175, 13);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "Выбранные nmA для фильтрации";
+            // 
+            // cbnmX
+            // 
+            this.cbnmX.FormattingEnabled = true;
+            this.cbnmX.Location = new System.Drawing.Point(694, 5);
+            this.cbnmX.Name = "cbnmX";
+            this.cbnmX.Size = new System.Drawing.Size(121, 21);
+            this.cbnmX.TabIndex = 0;
+            this.cbnmX.SelectedValueChanged += new System.EventHandler(this.cbnmX_SelectedValueChanged);
+            // 
+            // asdas
+            // 
+            this.asdas.AutoSize = true;
+            this.asdas.Location = new System.Drawing.Point(656, 8);
+            this.asdas.Name = "asdas";
+            this.asdas.Size = new System.Drawing.Size(31, 13);
+            this.asdas.TabIndex = 6;
+            this.asdas.Text = "nmX:";
             // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(899, 423);
+            this.tabPage3.Size = new System.Drawing.Size(858, 423);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Графическое предстваление";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -197,7 +494,7 @@
             this.cbnmU.FormattingEnabled = true;
             this.cbnmU.Location = new System.Drawing.Point(50, 9);
             this.cbnmU.Name = "cbnmU";
-            this.cbnmU.Size = new System.Drawing.Size(121, 21);
+            this.cbnmU.Size = new System.Drawing.Size(150, 21);
             this.cbnmU.TabIndex = 5;
             this.cbnmU.SelectedIndexChanged += new System.EventHandler(this.cbnmU_SelectedIndexChanged);
             // 
@@ -212,48 +509,40 @@
             // 
             // tbdesc
             // 
-            this.tbdesc.Location = new System.Drawing.Point(177, 9);
+            this.tbdesc.Location = new System.Drawing.Point(206, 9);
             this.tbdesc.Multiline = true;
             this.tbdesc.Name = "tbdesc";
-            this.tbdesc.Size = new System.Drawing.Size(690, 21);
+            this.tbdesc.Size = new System.Drawing.Size(661, 21);
             this.tbdesc.TabIndex = 5;
             this.tbdesc.Text = "Описание";
             // 
-            // label4
+            // lbResFilter
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(349, 166);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(16, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "->";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.lbResFilter.FormattingEnabled = true;
+            this.lbResFilter.Location = new System.Drawing.Point(13, 263);
+            this.lbResFilter.Name = "lbResFilter";
+            this.lbResFilter.Size = new System.Drawing.Size(831, 147);
+            this.lbResFilter.TabIndex = 24;
             // 
-            // button2
+            // chbDebagYes
             // 
-            this.button2.Location = new System.Drawing.Point(529, 151);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(157, 43);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Добавить результат к множеству U";
-            this.button2.UseVisualStyleBackColor = true;
+            this.chbDebagYes.AutoSize = true;
+            this.chbDebagYes.Location = new System.Drawing.Point(134, 228);
+            this.chbDebagYes.Name = "chbDebagYes";
+            this.chbDebagYes.Size = new System.Drawing.Size(105, 17);
+            this.chbDebagYes.TabIndex = 25;
+            this.chbDebagYes.Text = "Режим отладки";
+            this.chbDebagYes.UseVisualStyleBackColor = true;
             // 
-            // lbresCount
+            // button7
             // 
-            this.lbresCount.FormattingEnabled = true;
-            this.lbresCount.Location = new System.Drawing.Point(9, 219);
-            this.lbresCount.Name = "lbresCount";
-            this.lbresCount.Size = new System.Drawing.Size(834, 186);
-            this.lbresCount.TabIndex = 8;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 203);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Процесс расчета";
+            this.button7.Location = new System.Drawing.Point(256, 234);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 26;
+            this.button7.Text = "Очистить";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // CountForm
             // 
@@ -270,6 +559,13 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.binsous_lbofNma2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binSOurForFilterNMA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binSOUSnma)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,7 +584,7 @@
         private System.Windows.Forms.ComboBox cbnmU;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbnewnm;
         private System.Windows.Forms.TextBox tbdesc;
         private System.Windows.Forms.TextBox tbAval;
         private System.Windows.Forms.Label label3;
@@ -298,5 +594,35 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox lbresCount;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tbnewnmaname;
+        private System.Windows.Forms.ListBox lbSelectedToFilterNmA;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cbnmX;
+        private System.Windows.Forms.Label asdas;
+        private System.Windows.Forms.TextBox tbValLP;
+        private System.Windows.Forms.ListBox lbofnmLP;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ListBox lbofNma2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.BindingSource bindingSource2;
+        private System.Windows.Forms.TextBox tbNmaVal;
+        private System.Windows.Forms.BindingSource binSOurForFilterNMA;
+        private System.Windows.Forms.BindingSource binsous_lbofNma2;
+        private System.Windows.Forms.BindingSource binSOUSnma;
+        private System.Windows.Forms.ListBox lbResFilter;
+        private System.Windows.Forms.CheckBox chbDebagYes;
+        private System.Windows.Forms.Button button7;
     }
 }

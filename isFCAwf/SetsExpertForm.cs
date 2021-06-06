@@ -471,6 +471,10 @@ namespace isFCAwf
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if (U_btnStatChange == false & ID_U == -1 || ID_U == -1 & rbmX.Checked)
+            {
+                return;
+            }
             gbNMU_XCheckChanged();
             bool idWasParsed = int.TryParse(ID_mU.Text, out int freeIDnmU);
             if (rbFree.Checked && rbFromFree.Checked)
@@ -652,6 +656,11 @@ namespace isFCAwf
 
         private void button17_Click(object sender, EventArgs e)
         {
+            if (radioButton10.Checked & selected_X == -1)
+            {
+                MessageBox.Show("Ошибка. Не выбрано множество");
+                    return;
+            }
             var param = S_nmA_or_nmLP(out bool exept);
             if (exept)
                 return;

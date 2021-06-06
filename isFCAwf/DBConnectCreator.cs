@@ -538,11 +538,32 @@ namespace isFCAwf
             var result = Execute(connectionString, query);
             return result;
         }
+        public static DataTable GetNmXonNmUID(string connectionString, int nmUID)
+        {
+            var query = $"SELECT * FROM dbo.Лингвистические_переменные_Х AS x WHERE x.Код_М_U = {nmUID}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+        public static DataTable GetNmLPonNmX(string connectionString, int nmXID)
+        {
+            var query = $"SELECT * FROM [dbo].[ЛП_Нечеткие_множества] AS x WHERE x.[Код_ЛП] = {nmXID}";
+            var result = Execute(connectionString, query);
+            return result;
+        }
+
         public static DataTable GetNmAonMnU(string connectionString, int ID_nmU)
         {
             var query = $"SELECT * FROM dbo.[Нечеткие_множества_A<u>] WHERE Код_М_U = {ID_nmU}";
             var result = Execute(connectionString, query);
             return result;
-        } 
+        }
+        public static void InsertCountedNmA(string connectionString, int nmUID, string[] vallOfNewNma, string nameNewNma)
+        {
+            var query = $"INSERT INTO dbo.[Нечеткие_множества_A<u>] (Код_М_U, Имя_НМ, m1, m2, a, b) " +
+                    $"OUTPUT Inserted.Код_НМ " +
+                    $"VALUES({nmUID}, '{nameNewNma}', {int.Parse(vallOfNewNma[0])}, {int.Parse(vallOfNewNma[1])}, {int.Parse(vallOfNewNma[2])}, {int.Parse(vallOfNewNma[3])})";
+            _ = Execute(connectionString, query);
+        }
+        
     }
 }                                                                                                                   ////{info.Дата_выдачи?.ToString("\\'yyyy-MM-dd\\'") ?? "NULL"});";
