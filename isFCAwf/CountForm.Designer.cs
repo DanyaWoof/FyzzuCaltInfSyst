@@ -48,6 +48,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
+            this.chbDebagYes = new System.Windows.Forms.CheckBox();
+            this.lbResFilter = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -77,14 +80,14 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.binSOUSnma = new System.Windows.Forms.BindingSource(this.components);
-            this.lbResFilter = new System.Windows.Forms.ListBox();
-            this.chbDebagYes = new System.Windows.Forms.CheckBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.binsous_lbofNma2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.binSOurForFilterNMA)).BeginInit();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.binSOUSnma)).BeginInit();
@@ -298,6 +301,34 @@
             this.tabPage2.Text = "Нечеткая фильтрация";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(256, 234);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 26;
+            this.button7.Text = "Очистить";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // chbDebagYes
+            // 
+            this.chbDebagYes.AutoSize = true;
+            this.chbDebagYes.Location = new System.Drawing.Point(134, 228);
+            this.chbDebagYes.Name = "chbDebagYes";
+            this.chbDebagYes.Size = new System.Drawing.Size(105, 17);
+            this.chbDebagYes.TabIndex = 25;
+            this.chbDebagYes.Text = "Режим отладки";
+            this.chbDebagYes.UseVisualStyleBackColor = true;
+            // 
+            // lbResFilter
+            // 
+            this.lbResFilter.FormattingEnabled = true;
+            this.lbResFilter.Location = new System.Drawing.Point(13, 263);
+            this.lbResFilter.Name = "lbResFilter";
+            this.lbResFilter.Size = new System.Drawing.Size(831, 147);
+            this.lbResFilter.TabIndex = 24;
+            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(219, 126);
@@ -482,6 +513,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button8);
+            this.tabPage3.Controls.Add(this.cartesianChart1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(858, 423);
@@ -516,45 +549,36 @@
             this.tbdesc.TabIndex = 5;
             this.tbdesc.Text = "Описание";
             // 
-            // lbResFilter
+            // cartesianChart1
             // 
-            this.lbResFilter.FormattingEnabled = true;
-            this.lbResFilter.Location = new System.Drawing.Point(13, 263);
-            this.lbResFilter.Name = "lbResFilter";
-            this.lbResFilter.Size = new System.Drawing.Size(831, 147);
-            this.lbResFilter.TabIndex = 24;
+            this.cartesianChart1.Location = new System.Drawing.Point(45, 47);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(813, 373);
+            this.cartesianChart1.TabIndex = 0;
+            this.cartesianChart1.Text = "cartesianChart1";
             // 
-            // chbDebagYes
+            // button8
             // 
-            this.chbDebagYes.AutoSize = true;
-            this.chbDebagYes.Location = new System.Drawing.Point(134, 228);
-            this.chbDebagYes.Name = "chbDebagYes";
-            this.chbDebagYes.Size = new System.Drawing.Size(105, 17);
-            this.chbDebagYes.TabIndex = 25;
-            this.chbDebagYes.Text = "Режим отладки";
-            this.chbDebagYes.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(256, 234);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 26;
-            this.button7.Text = "Очистить";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button8.Location = new System.Drawing.Point(16, 17);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 1;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // CountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 500);
+            this.ClientSize = new System.Drawing.Size(885, 510);
             this.Controls.Add(this.tbdesc);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbnmU);
             this.Controls.Add(this.tabControl1);
             this.Name = "CountForm";
             this.Text = "CountForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CountForm_FormClosed);
             this.Load += new System.EventHandler(this.CountForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -563,6 +587,7 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.binsous_lbofNma2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.binSOurForFilterNMA)).EndInit();
+            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.binSOUSnma)).EndInit();
@@ -624,5 +649,7 @@
         private System.Windows.Forms.ListBox lbResFilter;
         private System.Windows.Forms.CheckBox chbDebagYes;
         private System.Windows.Forms.Button button7;
+        private LiveCharts.WinForms.CartesianChart cartesianChart1;
+        private System.Windows.Forms.Button button8;
     }
 }

@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 
 namespace isFCAwf
 {
@@ -436,7 +439,7 @@ namespace isFCAwf
 
         private void lbSelectedToFilterNmA_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (countColSrtWasSelect > 0)
+            if (countColSrtWasSelect > 0 & !formClose)
             {
                 tbNmaVal.Text = SelValGetter(lbSelectedToFilterNmA, collectOFSELECTEDnmaToFilter, out _, out _);
                 //lbofNma2.SelectedValue != null
@@ -447,6 +450,78 @@ namespace isFCAwf
         {
             if (CounterColLboxItems_LP > 0 && cbIsLoad)
                 tbValLP.Text = SelValGetter(lbofnmLP, collectOF_LP, out _, out _);
+        }
+
+        private bool formClose = false;
+        private void CountForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            cbIsLoad = false;
+            formClose = true;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            SeriesCollection series = new SeriesCollection();
+            ChartValues<double> fuzzyValues = new ChartValues<double>();
+            List<string> line_oX_ = new List<string>();
+
+            cartesianChart1.Series = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "Series 1",
+                    Values = new ChartValues<double> {4, 6, 5, 2, 7},
+                    LineSmoothness = 0
+                },
+                new LineSeries
+                {
+                    Title = "Series 2",
+                    Values = new ChartValues<double> {6, 7, 3, 4, 6},
+                    PointGeometry = null,
+                    LineSmoothness = 0
+                },
+                new LineSeries
+                {
+                    Title = "Series 3",
+                    Values = new ChartValues<ObservablePoint>
+                    {
+                        new ObservablePoint(0, 0), //x,y (x,0),(x,1),(x,1),(x,0)
+                        new ObservablePoint(2, 10),
+                        new ObservablePoint(2, 10),
+                        //                        new ObservablePoint(4, 10),
+                        new ObservablePoint(6, 0),
+                    },
+                    PointGeometry = DefaultGeometries.Square,
+                    PointGeometrySize = 15,
+                    LineSmoothness = 0
+                }
+            };
+            cartesianChart1.AxisX.Add(new Axis
+            {
+                Title = "Month",
+                Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" }
+            });
+
+            cartesianChart1.AxisY.Add(new Axis
+            {
+                Title = "%",
+                
+            });
+
+            cartesianChart1.LegendLocation = LegendLocation.Right;
+
+            //modifying the series collection will animate and update the chart
+            cartesianChart1.Series.Add(new LineSeries
+            {
+                Values = new ChartValues<double> { 0, 1, 1, 0, 0 },
+                LineSmoothness = 0 //straight lines, 1 really smooth lines
+            });
+
+            //modifying any series values will also animate and update the chart
+            //cartesianChart1.Series[2].Values.Add(5d);
+
+            //cartesianChart1.AxisX.Clear();
+
         }
     }
 }

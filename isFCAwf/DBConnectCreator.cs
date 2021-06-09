@@ -122,8 +122,8 @@ namespace isFCAwf
         }
 
         public static DataTable GetFIOsTable(string connectionString, int orderNum)
-        {
-            var query = $"SELECT кл.ID_клиента, Номер_заявки,  кл.Фамилия + ' ' + кл.Имя + ' ' + кл.Отчество AS ФИО_клиента, Роль, Телефон " +
+        {//, Номер_заявки
+            var query = $"SELECT кл.ID_клиента,  кл.Фамилия + ' ' + кл.Имя + ' ' + кл.Отчество AS ФИО_клиента, Роль, Телефон " +
                 $"FROM dbo.СписКлиентов AS ск LEFT JOIN dbo.Клиенты AS кл ON кл.ID_клиента = ск.ID_клиента " +
                 $"LEFT JOIN dbo.СпрРолей AS ср ON ср.Код_роли = кл.Код_роли WHERE Номер_заявки = '{orderNum}'";
             var result = Execute(connectionString, query);

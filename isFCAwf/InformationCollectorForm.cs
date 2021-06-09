@@ -146,6 +146,8 @@ namespace isFCAwf
             var secTable = DBConnectCreator.GetFIOsTable(sqlConnString, orderNum);
             bindingSourceSecTab.DataSource = secTable;
             dataGridViewFIO.DataSource = bindingSourceSecTab;
+            dataGridViewFIO.AutoResizeColumns();
+
         }
 
 
