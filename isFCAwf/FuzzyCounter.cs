@@ -12,7 +12,7 @@ namespace isFCAwf
     {
         public int nmu {get; set; }
         public string sqlstringConn { get; set; }
-
+        public int IDnmas { get; set; }
         private string lsimbol = "(";
         private string rsimbol = ")";
         private char[] chArray = { '*', '/', '-', '+' };
@@ -29,7 +29,9 @@ namespace isFCAwf
             else
                 MessageBox.Show("Проверьте закрытость операндов символами $$");
             resOfCounts = rOfCounts;
+            IDnmas = 0;
             return SearcherInPrivateCollection(res.Substring(1, res.Length - 2));
+
         }
 
         private string AnalizatorStroki(string formStr, out List<string> lstr)
@@ -231,13 +233,20 @@ namespace isFCAwf
 
 
 
-        private double[] GetValuesNM(int nmuPK, string nmName) //код множества и имя подмножества // Подключение MS SQL
+        private double[] GetValuesNM(int nmuID, string nmName) //код множества и имя подмножества // Подключение MS SQL
         {
+            var resStr = DBConnectCreator.GetValuesNM(sqlstringConn, nmuID, nmName); // id,name,m1,m2,a,b
+            IDnmas += int.Parse(resStr[0]);
+            double[] nm = new double[4];
+            for (int i = 0; i < nm.Length; i++)
+                nm[i] = Double.Parse(resStr[i + 2]);
+            return nm;
+            /*
             //AND [Имя_НМ] =  'Инвестор1'
             //string connectionString = @"Data Source=DESKTOP-EI0AJ7L\SQLEXPRESS;Initial Catalog=FuzzyCalc;Integrated Security=True";
             int n_m_u = nmuPK; // вместо 2 нечеткие множества M_U
             if (nmName != "")
-                nmName = " AND Имя_НМ = '" + nmName + "'";
+                nmName = $" AND Имя_НМ = '{nmName}'";
 
             string query = $"SELECT Имя_НМ, m1, m2, a, b FROM dbo.[Нечеткие_множества_A<u>] WHERE Код_М_U = {n_m_u} {nmName}";
             //using (SqlConnection connection = new SqlConnection(connectionString))
@@ -259,6 +268,7 @@ namespace isFCAwf
                 reader.Close();
                 return nm;
             }
+            */
         }
     }
 }

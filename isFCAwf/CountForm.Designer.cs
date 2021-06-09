@@ -31,10 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.tbnewnmaname = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lbresCount = new System.Windows.Forms.ListBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tbAconName = new System.Windows.Forms.TextBox();
             this.tbAval = new System.Windows.Forms.TextBox();
@@ -48,6 +50,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.chbDebagYes = new System.Windows.Forms.CheckBox();
             this.lbResFilter = new System.Windows.Forms.ListBox();
@@ -74,14 +78,14 @@
             this.cbnmX = new System.Windows.Forms.ComboBox();
             this.asdas = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
+            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.cbnmU = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbdesc = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.binSOUSnma = new System.Windows.Forms.BindingSource(this.components);
-            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
-            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -106,10 +110,12 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button9);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.tbnewnmaname);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.lbresCount);
+            this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.tbAconName);
             this.tabPage1.Controls.Add(this.tbAval);
@@ -129,6 +135,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Арифметический расчет";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(611, 18);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(132, 36);
+            this.button9.TabIndex = 12;
+            this.button9.Text = "Показать на графике";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // label6
             // 
@@ -162,6 +178,16 @@
             this.lbresCount.Name = "lbresCount";
             this.lbresCount.Size = new System.Drawing.Size(834, 186);
             this.lbresCount.TabIndex = 8;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(749, 30);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(16, 13);
+            this.label18.TabIndex = 7;
+            this.label18.Text = "->";
+            this.label18.Click += new System.EventHandler(this.label4_Click);
             // 
             // label4
             // 
@@ -270,6 +296,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button10);
+            this.tabPage2.Controls.Add(this.label19);
             this.tabPage2.Controls.Add(this.button7);
             this.tabPage2.Controls.Add(this.chbDebagYes);
             this.tabPage2.Controls.Add(this.lbResFilter);
@@ -301,9 +329,28 @@
             this.tabPage2.Text = "Нечеткая фильтрация";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(349, 217);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(132, 36);
+            this.button10.TabIndex = 28;
+            this.button10.Text = "Показать на графике";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(487, 229);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(16, 13);
+            this.label19.TabIndex = 27;
+            this.label19.Text = "->";
+            // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(256, 234);
+            this.button7.Location = new System.Drawing.Point(255, 224);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 26;
@@ -522,6 +569,23 @@
             this.tabPage3.Text = "Графическое предстваление";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(16, 17);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 1;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // cartesianChart1
+            // 
+            this.cartesianChart1.Location = new System.Drawing.Point(45, 47);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(813, 373);
+            this.cartesianChart1.TabIndex = 0;
+            this.cartesianChart1.Text = "cartesianChart1";
+            // 
             // cbnmU
             // 
             this.cbnmU.FormattingEnabled = true;
@@ -548,24 +612,6 @@
             this.tbdesc.Size = new System.Drawing.Size(661, 21);
             this.tbdesc.TabIndex = 5;
             this.tbdesc.Text = "Описание";
-            // 
-            // cartesianChart1
-            // 
-            this.cartesianChart1.Location = new System.Drawing.Point(45, 47);
-            this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(813, 373);
-            this.cartesianChart1.TabIndex = 0;
-            this.cartesianChart1.Text = "cartesianChart1";
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(16, 17);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // CountForm
             // 
@@ -651,5 +697,9 @@
         private System.Windows.Forms.Button button7;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label19;
     }
 }

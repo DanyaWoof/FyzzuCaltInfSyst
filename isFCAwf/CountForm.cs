@@ -127,6 +127,7 @@ namespace isFCAwf
             {
                 LoadCbox_with_nmX();
             }
+                
         }
 
         private List<NmA_or_nmLP> FORmethodFillLists(DataRowCollection dRColl)
@@ -188,9 +189,11 @@ namespace isFCAwf
             fc.sqlstringConn = sqlStringConn;
             double[] dmas = fc.GetRezult(textBox1.Text, out List<string> resultsOfCounts);
             string s = "";
-            for (int i = 0; i < dmas.Length; i++)
+            for (int i = 0; i < dmas.Length ; i++)
             {
-                s += dmas[i].ToString() + "; ";
+                s += dmas[i].ToString();
+                if (i != dmas.Length - 1)
+                    s += "; ";
                 variableNM.Add(dmas[i]);
             }
             tbnewnm.Text = s;
@@ -202,7 +205,12 @@ namespace isFCAwf
 
         private void cbnmU_SelectedIndexChanged(object sender, EventArgs e)
         {
+            selectedNMAsForFuzFilter = null;
             cbnmX.SelectedIndex = -1;
+            lbofNma2.DataSource = null;
+            lbSelectedToFilterNmA.DataSource = null;
+            lbofnmLP.DataSource = null;
+            lbofNma.DataSource = null;
             SomeShitMethodGovna();
 
         }
@@ -231,9 +239,9 @@ namespace isFCAwf
 
         private void lbofNma_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (lbofNmaIsLoad & lbofNma.SelectedIndex !=-1)
+            if (lbofNmaIsLoad & lbofNma.SelectedIndex != -1 & cbnmX.SelectedIndex != -1)
             {
-                tbAval.Text = SelValGetter(lbofNma,collectOFnma, out selected_nmA, out string strname);
+                tbAval.Text = SelValGetter(lbofNma, collectOFnma, out selected_nmA, out string strname);
                 tbAconName.Text = strname;
                 //selected_nmA = int.Parse(lbofNma.SelectedValue.ToString());
                 //tbAval.Text = "$" + collectOFnma[lbofNma.SelectedIndex].Name + "$";
@@ -287,7 +295,7 @@ namespace isFCAwf
             }
 
 
-            filled_selectedNMAsForFuzFilter = false ;
+            filled_selectedNMAsForFuzFilter = false;
             selected_nmAToFilter = (int)lbofNma2.SelectedValue;
             int selIndexNmAFilter = lbofNma2.SelectedIndex;
             var r = lbofNma2DataTable.Rows[selIndexNmAFilter];
@@ -306,7 +314,7 @@ namespace isFCAwf
             //bindingSource1.Remove(lbofNma2.SelectedValue);
             //bindingSource2.Add(lbofNma2.SelectedValue);
             collectOFSELECTEDnmaToFilter = FORmethodFillLists(selectedNMAsForFuzFilter.Rows);
-            countColSrtWasSelect ++;
+            countColSrtWasSelect++;
         }
 
         private void lbofNma2_SelectedValueChanged(object sender, EventArgs e)
@@ -343,7 +351,7 @@ namespace isFCAwf
             lbSelectedToFilterNmA.DisplayMember = "Имя_НМ";
             filled_selectedNMAsForFuzFilter = true;
             binsous_lbofNma2.DataSource = lbofNma2DataTable;
-
+            collectOFSELECTEDnmaToFilter = FORmethodFillLists(selectedNMAsForFuzFilter.Rows);
         }
         private void cbnmX_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -402,7 +410,7 @@ namespace isFCAwf
                         Math.Max(0, Math.Min(1, ((double)(listNma1[i].M1 - listNlp2[j].M1 + listNlp2[j].A) / (listNma1[i].A + listNlp2[j].A)))),
                         Math.Max(0, Math.Min(1, ((double)(listNlp2[j].M2 - listNma1[i].M2 + listNlp2[j].B) / (listNma1[i].B + listNlp2[j].B))))
                         );
-                    string res = $"     Для X(A){j} = '"+ listNlp2[j].Name + "' {" + softFil.ToString() + "; " + hardFil.ToString()  + "}";
+                    string res = $"     Для X(A){j} = '" + listNlp2[j].Name + "' {" + softFil.ToString() + "; " + hardFil.ToString() + "}";
                     resultsOFfilter.Add(res);
                     if (chbDebagYes.Checked)
                     {
@@ -430,16 +438,16 @@ namespace isFCAwf
 
         private void button6_Click(object sender, EventArgs e)
         {
-        cbIsLoad = false;
-        lbofNmaIsLoad = false;
-        selected_nmU = -1;
-        selected_nmX = -1;
-        LoadCbox_with_nmU();
+            cbIsLoad = false;
+            lbofNmaIsLoad = false;
+            selected_nmU = -1;
+            selected_nmX = -1;
+            LoadCbox_with_nmU();
         }
 
         private void lbSelectedToFilterNmA_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (countColSrtWasSelect > 0 & !formClose)
+            if (countColSrtWasSelect > 0 & !formClose & lbSelectedToFilterNmA.SelectedIndex != -1)
             {
                 tbNmaVal.Text = SelValGetter(lbSelectedToFilterNmA, collectOFSELECTEDnmaToFilter, out _, out _);
                 //lbofNma2.SelectedValue != null
@@ -448,7 +456,7 @@ namespace isFCAwf
 
         private void lbofnmLP_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (CounterColLboxItems_LP > 0 && cbIsLoad)
+            if (CounterColLboxItems_LP > 0 && cbIsLoad & lbofnmLP.SelectedIndex != -1)
                 tbValLP.Text = SelValGetter(lbofnmLP, collectOF_LP, out _, out _);
         }
 
@@ -459,69 +467,117 @@ namespace isFCAwf
             formClose = true;
         }
 
-        private void button8_Click(object sender, EventArgs e)
+
+        public void SendDataToLiveCharToShow(List<NmA_or_nmLP> backSet, List<NmA_or_nmLP> frontSet )
         {
             SeriesCollection series = new SeriesCollection();
             ChartValues<double> fuzzyValues = new ChartValues<double>();
             List<string> line_oX_ = new List<string>();
-
-            cartesianChart1.Series = new SeriesCollection
+            cartesianChart1.Series.Clear();
+            LiveChartFiller(backSet, false);
+            LiveChartFiller(frontSet, true);
+            void LiveChartFiller(List<NmA_or_nmLP> listnmA, bool showPoint)
             {
-                new LineSeries
+                for (int i = 0; i < listnmA.Count; i++)
                 {
-                    Title = "Series 1",
-                    Values = new ChartValues<double> {4, 6, 5, 2, 7},
-                    LineSmoothness = 0
-                },
-                new LineSeries
-                {
-                    Title = "Series 2",
-                    Values = new ChartValues<double> {6, 7, 3, 4, 6},
-                    PointGeometry = null,
-                    LineSmoothness = 0
-                },
-                new LineSeries
-                {
-                    Title = "Series 3",
-                    Values = new ChartValues<ObservablePoint>
+                    LineSeries lineSeries = new LineSeries
                     {
-                        new ObservablePoint(0, 0), //x,y (x,0),(x,1),(x,1),(x,0)
-                        new ObservablePoint(2, 10),
-                        new ObservablePoint(2, 10),
-                        //                        new ObservablePoint(4, 10),
-                        new ObservablePoint(6, 0),
-                    },
-                    PointGeometry = DefaultGeometries.Square,
-                    PointGeometrySize = 15,
-                    LineSmoothness = 0
+                        Title = listnmA[i].Name,
+                        Values = new ChartValues<ObservablePoint>
+                        {
+                            new ObservablePoint(listnmA[i].M1 - listnmA[i].A, 0), //x,y (x,0),(x,1),(x,1),(x,0)
+                            new ObservablePoint(listnmA[i].M1, 100),
+                            new ObservablePoint(listnmA[i].M2, 100),
+                            new ObservablePoint(listnmA[i].M2 + listnmA[i].B, 0),
+                            new ObservablePoint(listnmA[i].M1 - listnmA[i].A, 0)
+                        },
+                        PointGeometry = DefaultGeometries.Square,
+                        PointGeometrySize = 5,
+                        LineSmoothness = 0
+                    };
+                    if (!showPoint)
+                        lineSeries.PointGeometry = null;
+                    cartesianChart1.Series.Add(lineSeries);
+                    //series.Add(lineSeries);
                 }
-            };
+
+
+            }
+            //cartesianChart1.Series = series; //как варик
+            //cartesianChart1.Series.Add(LineSeries);
+            
+            cartesianChart1.AxisX.Clear();
             cartesianChart1.AxisX.Add(new Axis
             {
-                Title = "Month",
-                Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" }
+                    Title = "Значения трапеций"
             });
-
+            cartesianChart1.AxisY.Clear();
+            string[] AxisY = new string[100];
+            for (int i = 0; i < 10; i++)
+                AxisY[i] = (i + i * 10).ToString();
             cartesianChart1.AxisY.Add(new Axis
             {
                 Title = "%",
-                
+                Labels = AxisY,
+                LabelFormatter = value => value.ToString()
             });
 
             cartesianChart1.LegendLocation = LegendLocation.Right;
-
+            /*
             //modifying the series collection will animate and update the chart
             cartesianChart1.Series.Add(new LineSeries
             {
                 Values = new ChartValues<double> { 0, 1, 1, 0, 0 },
                 LineSmoothness = 0 //straight lines, 1 really smooth lines
-            });
+            }); */
 
             //modifying any series values will also animate and update the chart
             //cartesianChart1.Series[2].Values.Add(5d);
 
             //cartesianChart1.AxisX.Clear();
+        }
 
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (tbnewnm.Text == "")
+            {
+                return;
+            }
+            string[] countedNma = tbnewnm.Text.Split(new[] { ';' }, 4); //, StringSplitOptions.RemoveEmptyEntries
+
+            //string[] nameParts = info.ФИО_клиента.Split(new[] { ' ' }, 3, System.StringSplitOptions.RemoveEmptyEntries);
+            //string firstName = nameParts.ElementAtOrDefault(1);
+            //string lastName = nameParts.ElementAtOrDefault(0);
+            //string secondName = nameParts.ElementAtOrDefault(2);
+            List<NmA_or_nmLP> countedNmaList = new List<NmA_or_nmLP>();
+            NmA_or_nmLP nmA_Or_NmLP = new NmA_or_nmLP();
+            nmA_Or_NmLP.Name = "Результат расчета";
+            nmA_Or_NmLP.M1 = int.Parse(countedNma[0]);
+            nmA_Or_NmLP.M2 = int.Parse(countedNma[1]);
+            nmA_Or_NmLP.A = int.Parse(countedNma[2]);
+            nmA_Or_NmLP.B = int.Parse(countedNma[3]);
+            countedNmaList.Add(nmA_Or_NmLP);
+            
+            /*
+            List<NmA_or_nmLP> countedNmaList = new List<NmA_or_nmLP>
+            {
+                new NmA_or_nmLP
+                {
+                    Name = "Результат расчета",
+                    M1 = int.Parse(countedNma[0]),
+                    M2 = int.Parse(countedNma[1]),
+                    A = int.Parse(countedNma[2]),
+                    B = int.Parse(countedNma[3])
+                }
+            };
+            */
+            //cartesianChart1
+            SendDataToLiveCharToShow(collectOFnma, countedNmaList);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            SendDataToLiveCharToShow(collectOF_LP, collectOFSELECTEDnmaToFilter);
         }
     }
 }

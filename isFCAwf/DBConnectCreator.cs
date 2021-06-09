@@ -564,6 +564,18 @@ namespace isFCAwf
                     $"VALUES({nmUID}, '{nameNewNma}', {int.Parse(vallOfNewNma[0])}, {int.Parse(vallOfNewNma[1])}, {int.Parse(vallOfNewNma[2])}, {int.Parse(vallOfNewNma[3])})";
             _ = Execute(connectionString, query);
         }
-        
+
+        public static string[] GetValuesNM(string connectionString, int nmuID, string nmName) 
+        {
+            string[] nm = new string[6];
+            if (nmName != "")
+                nmName = $" AND Имя_НМ = '{nmName}'";
+
+            var query = $"SELECT Код_НМ, Имя_НМ, m1, m2, a, b FROM dbo.[Нечеткие_множества_A<u>] WHERE Код_М_U = {nmuID} {nmName}";
+            var dr = Execute(connectionString, query).Rows[0];
+            for (int i = 0; i < nm.Length; i++)
+                nm[i] = (dr[i]).ToString();
+            return nm;
+        }
     }
 }                                                                                                                   ////{info.Дата_выдачи?.ToString("\\'yyyy-MM-dd\\'") ?? "NULL"});";
