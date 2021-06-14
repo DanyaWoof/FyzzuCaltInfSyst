@@ -33,7 +33,7 @@ namespace isFCAwf
                 $"WHERE ID_Сотрудника = '{id}';";
             var queryresult = Execute(connectionString, query);
             var row = queryresult.Rows[0];
-            string result = 
+            string result =
                 ((string)row["Должность"]).Replace(" ", "") + ": " +
                 ((string)row["Фамилия"]).Replace(" ", "") + " " +
                 ((string)row["Имя"]).Replace(" ", "") + " " +
@@ -191,9 +191,9 @@ namespace isFCAwf
             return result;
         }
 
-        public static DataTable GetFuzzySetsOfSet_A (string connectionString, int kodOfM_U)
+        public static DataTable GetFuzzySetsOfSet_A(string connectionString, int kodOfM_U)
         {
-            var query = $"SELECT nmu.Код_М_U, Код_НМ, RTRIM(LTRIM(Имя_НМ)), m1, m2, a, b  FROM dbo.Хранилище_множеств_U AS nmU " +
+            var query = $"SELECT nmu.Код_М_U, Код_НМ, RTRIM(LTRIM(Имя_НМ)) AS Имя_НМ, m1, m2, a, b  FROM dbo.Хранилище_множеств_U AS nmU " +
                 $"LEFT JOIN dbo.[Нечеткие_множества_A<u>] AS nmA ON nmA.Код_М_U = nmU.Код_М_U " +
                 $"where nmu.Код_М_U = {kodOfM_U}";
             var result = Execute(connectionString, query);
@@ -202,11 +202,11 @@ namespace isFCAwf
 
         public static DataTable GetFuzzySetsOfLingVar_X(string connectionString, int kodOfM_U) //bool isnmA_notLP
         {
-            var query = $"SELECT nmu.Код_М_U, лпX.Код_ЛП, лп.Код_НМ_ЛП, лп.Имя, лп.m1, лп.m2, лп.a, лп.b " +
+            var query = $"SELECT nmu.Код_М_U, лпX.Код_ЛП, лп.Код_НМ_ЛП, лп.Имя, лп.m1, лп.m2, лп.a, лп.b, лпX.Имя_набора_ЛП " +
                 $"FROM dbo.Хранилище_множеств_U AS nmU " +
                 $"LEFT JOIN dbo.Лингвистические_переменные_Х AS лпX ON лпX.Код_М_U = nmu.Код_М_U " +
                 $"LEFT JOIN dbo.ЛП_Нечеткие_множества AS лп ON  лп.Код_ЛП = лпX.Код_ЛП " +
-                $"where nmu.Код_М_U = {kodOfM_U}";
+                $"where nmu.Код_М_U = { kodOfM_U}";
             var result = Execute(connectionString, query);
             return result;
         }
@@ -281,21 +281,21 @@ namespace isFCAwf
                 $"VALUES({companyNewID}, {order.IDdocOfDescriptionOfTheSubjectArea}, {order.OrderTask}, {order.IdIC}, null, GETDATE(), null, {order.orderStatus}); ";
             dr = Execute(connectionString, query).Rows[0];
             int orderNum = (int)dr["Номер_заявки"];
-                        
+
             query = $"SELECT * FROM dbo.СписКлиентов where Номер_заявки = {orderNum}";// теперь, когда заявка уже добавлена в БД с ней можно связать клиентов по промежуточной (многое-ко-многим) таблице
             var existDBRelations = Execute(connectionString, query).Rows;
             query = $"SELECT ID_клиента FROM dbo.Клиенты";
             for (int i = 0; i < clientsIDlist.Count; i++)
             {
                 if (existDBRelations.Count > 0)
-                for (int j = 0; j < existDBRelations.Count; j++)
-                {
+                    for (int j = 0; j < existDBRelations.Count; j++)
+                    {
                         if (clientsIDlist[i] == (int)existDBRelations[0][j]) //если к данной заявке уже был ранее прикреплен один из клиентов из List-а, то он отправляется назад как недобавленный 
                         {                                                           //а из этой колекции удаляется
                             abortedClients.Add(clientsIDlist[i]);
                             clientsIDlist.RemoveAt(i);
                         }
-                }
+                    }
             }
             OrderAndClientsRelationCreator(connectionString, clientsIDlist, orderNum);
         }
@@ -304,7 +304,7 @@ namespace isFCAwf
         {
             string query;
             //DataRow dr;
-            int clientdID = client.OldID ;
+            int clientdID = client.OldID;
             if (clientdID == -1)
             {
                 query = $"INSERT INTO dbo.Клиенты( Фамилия, Имя, Отчество, Телефон, Код_роли)  " +
@@ -321,8 +321,20 @@ namespace isFCAwf
 
         }
 
+        private static string CustDoubCon(double val)
+        {
+            var str = val.ToString();
+            str = str.Replace(",", ".");
+            return str;
+        }
+        private static string CustDoubCon(string val)
+        {
+            var str = val.Replace(",", ".");
+            return str;
+        }
         public static void AddorUpdate_nmA(string connectionString, NmA_or_nmLP nmA_nmLP) /////////////////////
         {
+            CultureInfo culInf;
             string query;
             if (nmA_nmLP.FromFree_nmulp)
             {
@@ -339,13 +351,14 @@ namespace isFCAwf
                 {
                     query = $"INSERT INTO dbo.[Нечеткие_множества_A<u>] (Код_М_U, Имя_НМ, m1, m2, a, b) " +
                             $"OUTPUT Inserted.Код_НМ " +
-                            $"VALUES({nmA_nmLP.ID_nmU_or_nmX}, '{nmA_nmLP.Name}', {nmA_nmLP.M1}, {nmA_nmLP.M2}, {nmA_nmLP.A}, {nmA_nmLP.B})";
+                            $"VALUES({nmA_nmLP.ID_nmU_or_nmX}, '{nmA_nmLP.Name}', {CustDoubCon(nmA_nmLP.M1)}, {CustDoubCon(nmA_nmLP.M2)}, {CustDoubCon(nmA_nmLP.A)}, {CustDoubCon(nmA_nmLP.B)})";
+                    //CultureInfo.InvariantCulture
                 }
                 else
                 {
                     query = $"INSERT INTO dbo.ЛП_Нечеткие_множества (Код_ЛП, Имя, m1, m2, a, b) " +
                             $"OUTPUT Inserted.Код_НМ_ЛП " +
-                            $"VALUES({nmA_nmLP.ID_nmU_or_nmX}, '{nmA_nmLP.Name}', {nmA_nmLP.M1}, {nmA_nmLP.M2}, {nmA_nmLP.A}, {nmA_nmLP.B})";
+                            $"VALUES({nmA_nmLP.ID_nmU_or_nmX}, '{nmA_nmLP.Name}', {CustDoubCon(nmA_nmLP.M1)}, {CustDoubCon(nmA_nmLP.M2)}, {CustDoubCon(nmA_nmLP.A)}, {CustDoubCon(nmA_nmLP.B)})";
                 }
             }
             else
@@ -355,25 +368,31 @@ namespace isFCAwf
                 {
                     query = $"UPDATE dbo.[Нечеткие_множества_A<u>] SET " +
                             $"[Код_М_U] = { nmA_nmLP.ID_nmU_or_nmX}, " +
-                            $"[Имя_НМ] = {nmA_nmLP.Name}, " +
-                            $"[m1] = {nmA_nmLP.M1}, " +
-                            $"[m2] = {nmA_nmLP.M2}, " +
-                            $"[a] = {nmA_nmLP.A}, " +
-                            $"[b] = {nmA_nmLP.B} " +
+                            $"[Имя_НМ] = '{nmA_nmLP.Name}', " +
+                            $"[m1] = {CustDoubCon(nmA_nmLP.M1)}, " +
+                            $"[m2] = {CustDoubCon(nmA_nmLP.M2)}, " +
+                            $"[a]  = {CustDoubCon(nmA_nmLP.A)}, " +
+                            $"[b]  = {CustDoubCon(nmA_nmLP.B)} " +
                             $"WHERE Код_НМ = { nmA_nmLP.ID_nmA_nmLP };";
                 }
                 else
                 {
                     query = $"UPDATE dbo.ЛП_Нечеткие_множества SET " +
                             $"Код_ЛП = { nmA_nmLP.ID_nmU_or_nmX}, " +
-                            $"[Имя] = {nmA_nmLP.Name},  " +
-                            $"[m1] = {nmA_nmLP.M1}, " +
-                            $"[m2] = {nmA_nmLP.M2}, " +
-                            $"[a] = {nmA_nmLP.A}, " +
-                            $"[b] = {nmA_nmLP.B} " +
+                            $"[Имя] = '{nmA_nmLP.Name}',  " +
+                            $"[m1] = {CustDoubCon(nmA_nmLP.M1)}, " +
+                            $"[m2] = {CustDoubCon(nmA_nmLP.M2)}, " +
+                            $"[a]  = {CustDoubCon(nmA_nmLP.A)}, " +
+                            $"[b]  = {CustDoubCon(nmA_nmLP.B)} " +
                             $"WHERE Код_НМ_ЛП = { nmA_nmLP.ID_nmA_nmLP };";
                 }
             }
+            _ = Execute(connectionString, query);
+        }
+
+        public static void GetnmToShowToApdate(string connectionString, int orderNum, int clientID)
+        {
+            var query = $"DELETE FROM dbo.СписКлиентов WHERE Номер_заявки = {orderNum} AND ID_клиента = {clientID}";
             _ = Execute(connectionString, query);
         }
 
@@ -418,7 +437,7 @@ namespace isFCAwf
         {
             string query;
             if (!U_btnStatChange) //изменить
-                query = $"UPDATE dbo.Хранилище_множеств_U SET Описание = {description_nmU} WHERE Код_М_U = {nmU}";
+                query = $"UPDATE dbo.Хранилище_множеств_U SET Описание = '{description_nmU}' WHERE Код_М_U = {nmU}";
             else
             { //добавить
                 if (fromFree_nmUs)
@@ -449,7 +468,7 @@ namespace isFCAwf
         {
             string query;
             if (!U_btnStatChange) //изменить
-                query = $"UPDATE dbo.[Лингвистические_переменные_Х] SET [Имя_набора_ЛП] = {description_nmU} WHERE Код_ЛП = {freeIdnmU}"; 
+                query = $"UPDATE dbo.[Лингвистические_переменные_Х] SET [Имя_набора_ЛП] = {description_nmU} WHERE Код_ЛП = {freeIdnmU}";
             else
             { //добавить
                 if (fromFree_nmUs)
@@ -516,21 +535,45 @@ namespace isFCAwf
             _ = Execute(connectionString, query);
         }
 
-        /*public static DataTable GetOrdersTable(string connectionString)
+        public static void Delete_nmAorLP (string connectionString, bool isnmA, int nmID, bool deleteAll)
         {
-            var query = $"SELECT з.Номер_заявки, Статус_заявки, кл.Фамилия + ' ' + кл.Имя + ' ' + кл.Отчество AS ФИО_клиента," +
-                $"Название_предприятия, Задача, сотр.Фамилия + ' ' + сотр.Имя AS ССИ, сотр2.Фамилия + ' ' + сотр2.Имя AS ЭпМ, Дата_составления, Дата_завершения, Код_документа_описания AS КДО " +
-                $"FROM dbo.Заявки AS з " +
-                $"LEFT JOIN dbo.Статусы AS ст ON ст.Код_статуса_заявки = з.Код_статуса_заявки " +
-                $"LEFT JOIN dbo.СписКлиентов AS ск ON ск.Номер_заявки = з.Номер_заявки " +
-                $"LEFT JOIN dbo.Клиенты AS кл ON кл.ID_клиента = ск.ID_клиента " +
-                $"LEFT JOIN dbo.Предприятия AS пр ON пр.ID_предприятия = з.ID_предприятия " +
-                $"LEFT JOIN dbo.ЗадачиСправ AS зс ON зс.Код_задачи = з.Код_задачи " +
-                $"LEFT JOIN dbo.Сотрудники AS сотр ON сотр.ID_Сотрудника = з.ID_CСИ " +
-                $"LEFT JOIN dbo.Сотрудники AS сотр2 ON сотр2.ID_Сотрудника = з.ID_ЭпМ";
-            var result = Execute(connectionString, query);
-            return result;
-        }*/
+            string query;
+            if (deleteAll)
+            {
+                int nmUID = nmID;
+                if (isnmA)
+                    query = $"DELETE FROM dbo.[Нечеткие_множества_A<u>] WHERE Код_М_U = {nmUID} ;";
+                else
+                {
+                    query = $"DELETE FROM [dbo].[ЛП_Нечеткие_множества] WHERE [Код_НМ_ЛП] = {nmUID} ;";
+                }
+
+            }
+            else
+            {
+                if (isnmA)
+                    query = $"DELETE FROM dbo.[Нечеткие_множества_A<u>] WHERE Код_НМ= {nmID} ;";
+                else
+                    query = $"DELETE FROM [dbo].[ЛП_Нечеткие_множества] WHERE [Код_НМ_ЛП] = {nmID} ;";
+            }
+            _ = Execute(connectionString, query);
+        }
+
+            /*public static DataTable GetOrdersTable(string connectionString)
+            {
+                var query = $"SELECT з.Номер_заявки, Статус_заявки, кл.Фамилия + ' ' + кл.Имя + ' ' + кл.Отчество AS ФИО_клиента," +
+                    $"Название_предприятия, Задача, сотр.Фамилия + ' ' + сотр.Имя AS ССИ, сотр2.Фамилия + ' ' + сотр2.Имя AS ЭпМ, Дата_составления, Дата_завершения, Код_документа_описания AS КДО " +
+                    $"FROM dbo.Заявки AS з " +
+                    $"LEFT JOIN dbo.Статусы AS ст ON ст.Код_статуса_заявки = з.Код_статуса_заявки " +
+                    $"LEFT JOIN dbo.СписКлиентов AS ск ON ск.Номер_заявки = з.Номер_заявки " +
+                    $"LEFT JOIN dbo.Клиенты AS кл ON кл.ID_клиента = ск.ID_клиента " +
+                    $"LEFT JOIN dbo.Предприятия AS пр ON пр.ID_предприятия = з.ID_предприятия " +
+                    $"LEFT JOIN dbo.ЗадачиСправ AS зс ON зс.Код_задачи = з.Код_задачи " +
+                    $"LEFT JOIN dbo.Сотрудники AS сотр ON сотр.ID_Сотрудника = з.ID_CСИ " +
+                    $"LEFT JOIN dbo.Сотрудники AS сотр2 ON сотр2.ID_Сотрудника = з.ID_ЭпМ";
+                var result = Execute(connectionString, query);
+                return result;
+            }*/
 
         public static DataTable GetnmuONorderNum(string connectionString, int orderNum)
         {
@@ -561,7 +604,7 @@ namespace isFCAwf
         {
             var query = $"INSERT INTO dbo.[Нечеткие_множества_A<u>] (Код_М_U, Имя_НМ, m1, m2, a, b) " +
                     $"OUTPUT Inserted.Код_НМ " +
-                    $"VALUES({nmUID}, '{nameNewNma}', {int.Parse(vallOfNewNma[0])}, {int.Parse(vallOfNewNma[1])}, {int.Parse(vallOfNewNma[2])}, {int.Parse(vallOfNewNma[3])})";
+                    $"VALUES({nmUID}, '{nameNewNma}', {CustDoubCon((vallOfNewNma[0]))}, {CustDoubCon((vallOfNewNma[1]))}, {CustDoubCon((vallOfNewNma[2]))}, {CustDoubCon((vallOfNewNma[3]))})";
             _ = Execute(connectionString, query);
         }
 
@@ -572,9 +615,14 @@ namespace isFCAwf
                 nmName = $" AND Имя_НМ = '{nmName}'";
 
             var query = $"SELECT Код_НМ, Имя_НМ, m1, m2, a, b FROM dbo.[Нечеткие_множества_A<u>] WHERE Код_М_U = {nmuID} {nmName}";
-            var dr = Execute(connectionString, query).Rows[0];
-            for (int i = 0; i < nm.Length; i++)
-                nm[i] = (dr[i]).ToString();
+            var dt = Execute(connectionString, query);
+            if (dt.Rows.Count != 0)
+            {
+                var dr = dt.Rows[0];
+                for (int i = 0; i < nm.Length; i++)
+                    nm[i] = (dr[i]).ToString();
+            }
+
             return nm;
         }
     }

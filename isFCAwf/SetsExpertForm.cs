@@ -307,17 +307,41 @@ namespace isFCAwf
             }
             DBConnectCreator.OrderClose(sqlConnString, savedSelectedOrderNum); //savedSelectedOrderNum;
         }
-
+        NmA_or_nmLP nm = new NmA_or_nmLP();
         public int selected_A = -1;
         public int selected_X = -1;
         private void dgvSetsData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && radioButton8.Checked && Int32.TryParse((dgvSetsData[1, e.RowIndex].Value.ToString()), out int selected_val))
             {
+                bool allValExist = true;
+                int[] vals = new int[4];
+                for (int i = 0; i < 4; i++)
+                    allValExist = int.TryParse(dgvSetsData[i + 3, e.RowIndex].Value.ToString(), out vals[i]);
+                if (allValExist)
+                {
+                    nm = new NmA_or_nmLP
+                    {
+                        M1 = vals[0],
+                        M2 = vals[1],
+                        A = vals[2],
+                        B = vals[3]
+                        //B = int.Parse(dgvSetsData[6, e.RowIndex].Value.ToString())
+                    };
+                }
+
+
                 if (radioButton9.Checked)
+                {
                     selected_A = selected_val;
+                    nm.Name = dgvSetsData[2, e.RowIndex].Value.ToString();
+                }
+
                 else
+                {
                     selected_X = selected_val;
+                    nm.Name = dgvSetsData[7, e.RowIndex].Value.ToString();
+                }
             }
         }
 
@@ -369,19 +393,20 @@ namespace isFCAwf
             }
             else
             {
-                if (int.TryParse(tbm1.Text, out _) & int.TryParse(tbm2.Text, out _) & int.TryParse(tba.Text, out _) & int.TryParse(tbb.Text, out _))
+                if (double.TryParse(tbm1.Text, out _) & double.TryParse(tbm2.Text, out _) & double.TryParse(tba.Text, out _) & double.TryParse(tbb.Text, out _))
                 {
                     nmA_Or_NmLP.Name = tbNMname.Text;
-                    nmA_Or_NmLP.M1 = int.Parse(tbm1.Text);
-                    nmA_Or_NmLP.M2 = int.Parse(tbm2.Text);
-                    nmA_Or_NmLP.A = int.Parse(tba.Text);
-                    nmA_Or_NmLP.B = int.Parse(tbb.Text);
+                    nmA_Or_NmLP.M1 = double.Parse(tbm1.Text);
+                    nmA_Or_NmLP.M2 = double.Parse(tbm2.Text);
+                    nmA_Or_NmLP.A = double.Parse(tba.Text);
+                    nmA_Or_NmLP.B = double.Parse(tbb.Text);
                 }
                 else
                 {
                     MessageBox.Show("Одно из значений трапеции не задано");
-                    return nmA_Or_NmLP;
                     exept = true;
+                    return nmA_Or_NmLP;
+
                 }
             }
 
@@ -413,8 +438,17 @@ namespace isFCAwf
         }
         public void SetsDeleter(bool deleteAll)
         {
-
-            //selectedLP_or_A
+            if (selected_A == -1 & selected_X == -1)
+                return;
+            int deletetNMID = selected_X;
+            bool isnmA = false;
+            if (selected_A != -1)
+            {
+                isnmA = true;
+                deletetNMID = selected_A;
+            }
+            DBConnectCreator.Delete_nmAorLP(sqlConnString, isnmA, deletetNMID, deleteAll);
+            Update_dgvSetsData(ID_U);
         }
 
 
@@ -643,8 +677,7 @@ namespace isFCAwf
         private void button15_Click(object sender, EventArgs e)
         {
             addnmA_or_LP.Visible = false;
-            selected_A = -1;
-            selected_X = -1; 
+            cleartbnma();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -652,6 +685,16 @@ namespace isFCAwf
             isSelectToAdd_notUpdate_nmaLp = false;
             StatChanger_addnmA_or_LP();
             chb(false);
+            tbNMname.Text = nm.Name;
+            tbm1.Text = nm.M1.ToString();
+            tbm2.Text = nm.M2.ToString();
+            tba.Text = nm.A.ToString();
+            tbb.Text = nm.B.ToString();
+
+            tboldm1.Text = nm.M1.ToString();
+            tboldm2.Text = nm.M2.ToString();
+            tbolda.Text = nm.A.ToString();
+            tboldb.Text = nm.B.ToString();
         }
 
         private void button17_Click(object sender, EventArgs e)
@@ -669,8 +712,25 @@ namespace isFCAwf
             selected_X = -1;
             if (ID_U != -1)
                 Update_dgvSetsData(ID_U);
+            addnmA_or_LP.Visible = false;
+            cleartbnma();
         }
 
+        private void cleartbnma()
+        {
+            selected_A = -1;
+            selected_X = -1;
+            tbNMname.Text = string.Empty;
+            tbm1.Text = string.Empty;
+            tbm2.Text = string.Empty;
+            tba.Text = string.Empty;
+            tbb.Text = string.Empty;
+
+            tboldm1.Text = string.Empty;
+            tboldm2.Text = string.Empty;
+            tbolda.Text = string.Empty;
+            tboldb.Text = string.Empty;
+        }
         private void cbnma_fromFree_CheckedChanged(object sender, EventArgs e)
         {
             StatChanger_addnmA_or_LP();

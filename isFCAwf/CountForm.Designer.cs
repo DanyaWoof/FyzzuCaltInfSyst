@@ -138,7 +138,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(611, 18);
+            this.button9.Location = new System.Drawing.Point(673, 25);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(132, 36);
             this.button9.TabIndex = 12;
@@ -182,7 +182,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(749, 30);
+            this.label18.Location = new System.Drawing.Point(811, 37);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(16, 13);
             this.label18.TabIndex = 7;
@@ -203,7 +203,7 @@
             // 
             this.tbAconName.Location = new System.Drawing.Point(371, 34);
             this.tbAconName.Name = "tbAconName";
-            this.tbAconName.Size = new System.Drawing.Size(134, 20);
+            this.tbAconName.Size = new System.Drawing.Size(296, 20);
             this.tbAconName.TabIndex = 6;
             // 
             // tbAval
@@ -215,10 +215,10 @@
             // 
             // tbnewnm
             // 
-            this.tbnewnm.Location = new System.Drawing.Point(371, 151);
+            this.tbnewnm.Location = new System.Drawing.Point(371, 156);
             this.tbnewnm.Multiline = true;
             this.tbnewnm.Name = "tbnewnm";
-            this.tbnewnm.Size = new System.Drawing.Size(134, 43);
+            this.tbnewnm.Size = new System.Drawing.Size(134, 35);
             this.tbnewnm.TabIndex = 5;
             // 
             // button2

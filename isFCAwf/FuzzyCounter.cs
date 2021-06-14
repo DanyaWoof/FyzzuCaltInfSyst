@@ -236,6 +236,10 @@ namespace isFCAwf
         private double[] GetValuesNM(int nmuID, string nmName) //код множества и имя подмножества // Подключение MS SQL
         {
             var resStr = DBConnectCreator.GetValuesNM(sqlstringConn, nmuID, nmName); // id,name,m1,m2,a,b
+            if (resStr[0] == null )
+            {
+                return new double[4];
+            }
             IDnmas += int.Parse(resStr[0]);
             double[] nm = new double[4];
             for (int i = 0; i < nm.Length; i++)

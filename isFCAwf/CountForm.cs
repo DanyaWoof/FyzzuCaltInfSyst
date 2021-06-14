@@ -27,7 +27,8 @@ namespace isFCAwf
         private List<double> variableNM = new List<double>(10);
         private void CountForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = "$Источник A$+$Источник B$+$Источник C$-$Долги D$";
+            textBox1.Text = "$Источник A$+$Источник B$+$Источник C$-$Долги D$"
+                + "$Квалификация отдела продаж$*$Потенциал развития ОП$*$Стабильность$/($100$*$100$)";
 
             LoadCbox_with_nmU();
         }
@@ -139,10 +140,10 @@ namespace isFCAwf
                 nm.ID_nmA_nmLP = (int)dRColl[i][0];
                 nm.ID_nmU_or_nmX = (int)dRColl[i][1];
                 nm.Name = (string)dRColl[i][2];
-                nm.M1 = (int)dRColl[i][3];
-                nm.M2 = (int)dRColl[i][4];
-                nm.A = (int)dRColl[i][5];
-                nm.B = (int)dRColl[i][6];
+                nm.M1 = double.Parse(dRColl[i][3].ToString());
+                nm.M2 = double.Parse(dRColl[i][4].ToString());
+                nm.A  = double.Parse(dRColl[i][5].ToString());
+                nm.B  = double.Parse(dRColl[i][6].ToString());
                 newList.Add(nm);
             }
             return newList;
@@ -489,7 +490,7 @@ namespace isFCAwf
                             new ObservablePoint(listnmA[i].M1, 100),
                             new ObservablePoint(listnmA[i].M2, 100),
                             new ObservablePoint(listnmA[i].M2 + listnmA[i].B, 0),
-                            new ObservablePoint(listnmA[i].M1 - listnmA[i].A, 0)
+                            //new ObservablePoint(listnmA[i].M1 - listnmA[i].A, 0)
                         },
                         PointGeometry = DefaultGeometries.Square,
                         PointGeometrySize = 5,
@@ -536,7 +537,6 @@ namespace isFCAwf
 
             //cartesianChart1.AxisX.Clear();
         }
-
         private void button9_Click(object sender, EventArgs e)
         {
             if (tbnewnm.Text == "")
@@ -544,7 +544,6 @@ namespace isFCAwf
                 return;
             }
             string[] countedNma = tbnewnm.Text.Split(new[] { ';' }, 4); //, StringSplitOptions.RemoveEmptyEntries
-
             //string[] nameParts = info.ФИО_клиента.Split(new[] { ' ' }, 3, System.StringSplitOptions.RemoveEmptyEntries);
             //string firstName = nameParts.ElementAtOrDefault(1);
             //string lastName = nameParts.ElementAtOrDefault(0);
@@ -552,10 +551,10 @@ namespace isFCAwf
             List<NmA_or_nmLP> countedNmaList = new List<NmA_or_nmLP>();
             NmA_or_nmLP nmA_Or_NmLP = new NmA_or_nmLP();
             nmA_Or_NmLP.Name = "Результат расчета";
-            nmA_Or_NmLP.M1 = int.Parse(countedNma[0]);
-            nmA_Or_NmLP.M2 = int.Parse(countedNma[1]);
-            nmA_Or_NmLP.A = int.Parse(countedNma[2]);
-            nmA_Or_NmLP.B = int.Parse(countedNma[3]);
+            nmA_Or_NmLP.M1 = double.Parse(countedNma[0]);
+            nmA_Or_NmLP.M2 = double.Parse(countedNma[1]);
+            nmA_Or_NmLP.A  = double.Parse(countedNma[2]);
+            nmA_Or_NmLP.B  = double.Parse(countedNma[3]);
             countedNmaList.Add(nmA_Or_NmLP);
             
             /*
