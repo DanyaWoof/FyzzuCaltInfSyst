@@ -78,7 +78,6 @@
             this.cbnmX = new System.Windows.Forms.ComboBox();
             this.asdas = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button8 = new System.Windows.Forms.Button();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.cbnmU = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -560,7 +559,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.button8);
             this.tabPage3.Controls.Add(this.cartesianChart1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -569,20 +567,11 @@
             this.tabPage3.Text = "Графическое предстваление";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(16, 17);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
             // cartesianChart1
             // 
-            this.cartesianChart1.Location = new System.Drawing.Point(45, 47);
+            this.cartesianChart1.Location = new System.Drawing.Point(0, 3);
             this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(813, 373);
+            this.cartesianChart1.Size = new System.Drawing.Size(858, 417);
             this.cartesianChart1.TabIndex = 0;
             this.cartesianChart1.Text = "cartesianChart1";
             // 
@@ -696,7 +685,6 @@
         private System.Windows.Forms.CheckBox chbDebagYes;
         private System.Windows.Forms.Button button7;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button button10;

@@ -310,14 +310,21 @@ namespace isFCAwf
         NmA_or_nmLP nm = new NmA_or_nmLP();
         public int selected_A = -1;
         public int selected_X = -1;
+        public int selected_nmXID = -1;
         private void dgvSetsData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && radioButton8.Checked && Int32.TryParse((dgvSetsData[1, e.RowIndex].Value.ToString()), out int selected_val))
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && radioButton8.Checked && Int32.TryParse((dgvSetsData[2, e.RowIndex].Value.ToString()), out int selected_val))
             {
                 bool allValExist = true;
-                int[] vals = new int[4];
+                double[] vals = new double[4];
                 for (int i = 0; i < 4; i++)
-                    allValExist = int.TryParse(dgvSetsData[i + 3, e.RowIndex].Value.ToString(), out vals[i]);
+                {
+                    int p = 0;
+                    if (!radioButton9.Checked)
+                        p = 1;
+                    allValExist = double.TryParse(dgvSetsData[i + 3 + p, e.RowIndex].Value.ToString(), out vals[i]);
+                }
+
                 if (allValExist)
                 {
                     nm = new NmA_or_nmLP
@@ -339,8 +346,9 @@ namespace isFCAwf
 
                 else
                 {
+                    selected_nmXID = int.Parse(dgvSetsData[1, e.RowIndex].Value.ToString());
                     selected_X = selected_val;
-                    nm.Name = dgvSetsData[7, e.RowIndex].Value.ToString();
+                    nm.Name = dgvSetsData[3, e.RowIndex].Value.ToString();
                 }
             }
         }
@@ -370,7 +378,7 @@ namespace isFCAwf
             }
             else
             {
-                nmA_Or_NmLP.ID_nmU_or_nmX = selected_X;
+                nmA_Or_NmLP.ID_nmU_or_nmX = selected_nmXID;
                 nmA_Or_NmLP.Is_nmA = false;
             }
 
